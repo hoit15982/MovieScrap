@@ -60,13 +60,11 @@ public class AdminServlet extends HttpServlet {
 			AdmLoginActionFactory factory = AdmLoginActionFactory.getInstance();
 			factory.getAction(command).execute(request, response);	
 		}else if( path[2].equals("main")){
-			
-			
-				String url = "/admin/main/main.jsp";
-				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-				dispatcher.forward(request, response);
-			
-			
+			//메인
+			String url = "/admin/main/main.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+			dispatcher.forward(request, response);
+			System.out.println("main");
 		}else if( path[2].equals("board")){
 			BoardAdmActionFactory factory = BoardAdmActionFactory.getInstance();
 			factory.getBoardAction(command).execute(request, response);
