@@ -12,7 +12,7 @@ public class AdminActionFactory {
 	
 	public AdminAction getAdmindAction(String command){
 		AdminAction action = null;
-		if( command.equals("/adm/main")){
+		if( command.equals("/adm/member/")){
 			action = new AdminMainAction();
 		}
 		return action;

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:import url="/adm/layout/header.jsp"></c:import>
+<c:import url="/admin/layout/header.jsp"></c:import>
 
 <section class="content" id="content">
 	
@@ -128,4 +128,4 @@
 	</script>	
 </section>
 
-<c:import url="/adm/layout/footer.jsp"></c:import>
+<c:import url="/admin/layout/footer.jsp"></c:import>

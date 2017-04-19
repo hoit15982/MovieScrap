@@ -31,7 +31,7 @@ public class BoardOptionDeleteAction implements BoardOptionAction {
 			if( result != 1) break;
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/adm/boardOption/");
+		response.sendRedirect(request.getContextPath()+"/adm/boardOption/list.do");
 	}
 
 }

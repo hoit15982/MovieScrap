@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:import url="/adm/layout/header.jsp"></c:import>
+<c:import url="/admin/layout/header.jsp"></c:import>
 <section class="content" id="content">
 	<div class="title_text">
 		<h2 class="title01">Member. Write</h2>
@@ -161,4 +161,4 @@
 	</form>
 </section>
 
-<c:import url="/adm/layout/footer.jsp"></c:import>
+<c:import url="/admin/layout/footer.jsp"></c:import>

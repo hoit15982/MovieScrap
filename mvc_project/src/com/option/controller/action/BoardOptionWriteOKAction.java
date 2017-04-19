@@ -90,7 +90,7 @@ public class BoardOptionWriteOKAction implements BoardOptionAction {
 
 				if( result == 0){
 					//결과가 0인경우 오류 발생
-					String url = "/adm/setting/boardOption_write.jsp";
+					String url = "/admin/setting/boardOption_write.jsp";
 					request.setAttribute("message", "입력 : 오류가 생겼습니다.");
 					
 					RequestDispatcher dispatcher = request.getRequestDispatcher(url);
@@ -102,7 +102,7 @@ public class BoardOptionWriteOKAction implements BoardOptionAction {
 					boardDao.createBoardSeq(optionVo.getOp_table()); //게시판 시퀀스생성
 					
 					//결과가 1이면 정상 입력
-					response.sendRedirect(request.getContextPath()+"/adm/boardOption/");
+					response.sendRedirect(request.getContextPath()+"/admin/boardOption/list.do");
 				}
 			}
 		}

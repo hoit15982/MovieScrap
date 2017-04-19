@@ -14,7 +14,7 @@ public class BoardOptionWriteAction implements BoardOptionAction {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String url = "/adm/setting/boardOption_write.jsp";
+		String url = "/admin/setting/boardOption_write.jsp";
 
 		//스킨 디렉토리
 		DirListUtil admlist = new DirListUtil(request.getRealPath("/adm/skin/"));

@@ -14,9 +14,7 @@ public class AdmLoginActionFactory {
 	
 	
 	public AdmAction getAction(String command){
-		
 		AdmAction action = null;
-		
 		if( command.equals("/adm/login/login.do") ){
 			action = new AdmLoginAction();
 		}

@@ -52,10 +52,11 @@ public class AdminServlet extends HttpServlet {
 		
 		System.out.println(command);
 		String [] path = command.split("/");
-	
+		System.out.println("dd");
 		if( path[2].equals("member")){
-			AdminActionFactory factory = AdminActionFactory.getInstance();
-			factory.getAdmindAction(command).execute(request, response);	
+			System.out.println("ddd");
+			AdmMemberActionFactory factory = AdmMemberActionFactory.getInstance();
+			factory.getAction(command).execute(request, response);	
 		}else if( path[2].equals("login")){
 			AdmLoginActionFactory factory = AdmLoginActionFactory.getInstance();
 			factory.getAction(command).execute(request, response);	
@@ -68,9 +69,6 @@ public class AdminServlet extends HttpServlet {
 		}else if(path[2].equals("config")){
 			ConfigActionFactory factory = ConfigActionFactory.getInstance();
 			factory.getConfigAction(command).execute(request, response);
-		}else if(path[2].equals("member")){
-			MemberAdmActionFactory factory = MemberAdmActionFactory.getInstance();
-			factory.getMemberAdmAction(command).execute(request, response);	
 		}else if( path[2].equals("menu")){
 			MenuActionFactory factroy = MenuActionFactory.getInstance();
 			factroy.getMenuAction(command).execute(request, response);

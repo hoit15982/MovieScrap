@@ -6,8 +6,8 @@
 	<h2 class="skip">메인메뉴</h2>
 	<ul class="clear">
 		<li><a href="${PATH }/adm/main">HOME</a></li>
-		<li><a href="${PATH }/adm/member/">회원관리</a></li>
-		<li><a href="${PATH }/adm/boardOption/">게시판관리</a></li>
+		<li><a href="${PATH }/adm/member/list.do">회원관리</a></li>
+		<li><a href="${PATH }/adm/boardOption/list.do">게시판관리</a></li>
 		<li><a href="${PATH }/adm/board/list.do?bo_table=notice">게시판</a>
 			<ul class="clear bg_black90">
 				<li><a href="${PATH }/adm/board/list.do?bo_table=notice">공지사항</a></li>

@@ -18,7 +18,7 @@ public class BoardOptionUpdateAction implements BoardOptionAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String url = "/adm/setting/boardOption_write.jsp"; //게시판 관리 정보 수정
+		String url = "/admin/setting/boardOption_write.jsp"; //게시판 관리 정보 수정
 		
 		//idx 가 없는 경우
 		String op_idx = request.getParameter("op_idx");

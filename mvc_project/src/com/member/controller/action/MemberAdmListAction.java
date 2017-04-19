@@ -20,7 +20,7 @@ public class MemberAdmListAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String url = "/adm/setting/member_list.jsp";
+		String url = "/admin/setting/member_list.jsp";
 		String req_url = request.getRequestURL()+"?";
 		
 		//페이지 받아오기 없으면 1로 설정

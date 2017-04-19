@@ -8,14 +8,14 @@ import com.member.controller.action.MemberAdmWriteAction;
 import com.member.controller.action.MemberAdmWriteOKAction;
 
 
-public class MemberAdmActionFactory {
-	private static MemberAdmActionFactory instance = new MemberAdmActionFactory();
-	private MemberAdmActionFactory(){}
-	public static MemberAdmActionFactory getInstance(){
+public class AdmMemberActionFactory {
+	private static AdmMemberActionFactory instance = new AdmMemberActionFactory();
+	private AdmMemberActionFactory(){}
+	public static AdmMemberActionFactory getInstance(){
 		return instance;
 	}
 	
-	public Action getMemberAdmAction(String command){
+	public Action getAction(String command){
 		Action action = null; 
 		
 		if( command.equals("/adm/member/list.do")){

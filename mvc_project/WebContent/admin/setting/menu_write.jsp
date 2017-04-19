@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/adm/layout/header.jsp"></c:import>
+<c:import url="/admin/layout/header.jsp"></c:import>
 
 <section class="content" id="content">
 	<div class="title_text">
@@ -49,4 +49,4 @@
 	</form>
 </section>
 <script type="text/javascript" src="${JS_PATH }/ux.menu.js?v=1"></script>
-<c:import url="/adm/layout/footer.jsp"></c:import>
+<c:import url="/admin/layout/footer.jsp"></c:import>

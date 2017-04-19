@@ -21,7 +21,7 @@ public class BoardOptionListAction implements BoardOptionAction {
 		// TODO Auto-generated method stub
 		ArrayList<BoardOptionVO> list = null;
 		
-		String url = "/adm/setting/boardOption_list.jsp";
+		String url = "/admin/setting/boardOption_list.jsp";
 		String req_url = request.getRequestURL()+"?";
 		
 		//페이지 받아오기 없으면 1로 설정
