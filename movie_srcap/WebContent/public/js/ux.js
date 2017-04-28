@@ -9,6 +9,7 @@ $(document).ready(function(){
 	leftRightSlide(0);
 	topDownSlide($(".top_notice"));
 	setDatePicker();
+	tabProduct($(".movie_content"), 0);
 });
 
 //datepicker 설정
