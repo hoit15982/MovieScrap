@@ -30,8 +30,8 @@
 					<span class="chk_area"><label><input type="checkbox" name="auto_login" id="login_auto_login"></label> 계정정보저장</span>
 				</div>
 				<div class="login_btn_area btn_area_left">
-					<a href="./MemberIntro.me" class="btn02">회원가입</a>
-					<a href="./MemberIntro.me" class="btn02">아이디/비밀번호 찾기</a>
+					<a href="${PATH}/MemberIntro.me" class="btn02">회원가입</a>
+					<a href="${PATH}/MemberIntro.me" class="btn02">아이디/비밀번호 찾기</a>
 				</div>
 			</fieldset>
 			</form>

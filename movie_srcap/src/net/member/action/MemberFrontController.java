@@ -21,22 +21,33 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet implem
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/loginForm.jsp");
+			System.out.println("front open");
+			System.out.println(action);
+			System.out.println(forward);
 			
 		} else if (command.equals("/MemberIntro.me")){
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/joinIntro.jsp");
-			
-		} else if (command.equals("/memberForm.me")){
 			System.out.println("front open");
+			System.out.println(action);
+			System.out.println(forward);
+			
+		} else if (command.equals("/memberJoin.me")){
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/memberForm.jsp");
+			System.out.println("front open");
+			System.out.println(action);
+			System.out.println(forward);
 			
 		}  else if (command.equals("/joinFin.me")){
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/joinFin.jsp");
+			System.out.println("front open");
+			System.out.println(action);
+			System.out.println(forward);
 			
 		}  else if (command.equals("/MemberJoinAction.me")){
 			action = new MemberJoinAction();

@@ -57,7 +57,7 @@ public class MemberDAO {
 	}
 	
 	public boolean joinMember(MemberBean member) throws SQLException{
-		String sql = "insert into MEMBER values(SEQ_member.nextval,?,?,?,?,?,?,?,?,'no')";
+		String sql = "insert into MEMBER values(SEQ_member_num.nextval,?,?,?,?,?,?,?,?,'no')";
 		//System.out.println(member.toString());
 		int result = 0;
 		try {

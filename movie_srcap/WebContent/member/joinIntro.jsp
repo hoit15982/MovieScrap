@@ -8,7 +8,7 @@
 	<div class="content_area">
 		<div class="section join_intro_area">
 		<h2 class="title01">JOIN</h2>
-		<form action="./memberForm.me" method="post" onSubmit="return frmSubmit(this);">
+		<form action="${PATH}/memberJoin.me" method="post" onSubmit="return frmSubmit(this);">
 			<h3 class="title02">개인정보취급방침</h3>
 			<div class="textarea_wrap">
 			<textarea name="cf_privacy">${configVo.cf_privacy }</textarea>

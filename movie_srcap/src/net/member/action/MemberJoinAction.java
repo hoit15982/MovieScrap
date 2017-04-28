@@ -24,6 +24,13 @@ public class MemberJoinAction implements Action{
 		member.setMB_GENDER(request.getParameter("mb_gender"));
 		member.setMB_PH(request.getParameter("mb_ph"));
 		member.setMB_EMAIL(request.getParameter("mb_email"));
+		System.out.println(request.getParameter("mb_id"));
+		System.out.println(request.getParameter("mb_pw"));
+		System.out.println(request.getParameter("mb_name"));
+		System.out.println(request.getParameter("mb_birth"));
+		System.out.println(request.getParameter("mb_gender"));
+		System.out.println(request.getParameter("mb_ph"));
+		System.out.println(request.getParameter("mb_email"));
 		result = memberdao.joinMember(member);
 		if(result == false){
 			System.out.println("회원 가입 실패");
