@@ -26,7 +26,33 @@ public class MemberDAO {
 			return;
 		}
 	}
-	
+	public boolean dupChk(String mb_id){
+		String sql = "select MB_ID from MEMBER where MB_ID=?";
+		boolean result = false;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getString("MB_ID").equals(mb_id)){
+					result = false; //일치
+				}
+			} else {
+				result = true; //아이디가 존재 x
+			}
+		} catch (Exception e) {
+			System.out.println("isMember Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+		
+		return result;
+		
+	}
 	public int isMember(MemberBean member){
 		String sql = "select MB_PW from MEMBER where MB_ID=?";
 		int result = -1;
