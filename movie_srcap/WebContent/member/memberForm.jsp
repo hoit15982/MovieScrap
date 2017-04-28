@@ -8,7 +8,7 @@
 	<div class="content_area about_area clearfix">
 		<div class="section">
 			<h2 class="title01">회원가입</h2>
-			<form action="${PATH }/member/joinFin.jsp" method="post" onSubmit="return frmJoinSubmit(this);">
+			<form action="MemberJoinAction.me" method="post" onSubmit="return frmJoinSubmit(this);">
 				<input type="hidden" value="0" name="mb_id_chk" />
 				<table class="tbl_join">
 					<colgroup>
