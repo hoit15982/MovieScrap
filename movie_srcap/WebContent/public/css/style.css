@@ -3,7 +3,7 @@
 @import 'jquery.bxslider.css?v=1.4';
 
 /* form design */
-.input-select{width:250px}
+.input-select{width:250px;padding:10px;border:1px solid #9c918a;line-height:20px;border-radius:3px}
 .input-select[size='10']{width:200px}
 .input-select[size='7']{width:150px}
 .input-select[size='5']{width:100px}
@@ -297,8 +297,8 @@ html, body{width:100%;position:relative;z-index:1;}
 .board_list_bottom .button_area_right{float:right;}
 
 .board_list{padding-top:10px}
-.board_list table{color:#333;border:5px solid #cfdcdb;border-radius:5px}
-.board_list table thead th{height:50px;font-weight:normal;border:1px solid #b4b7b8;background:#efefef}
+.board_list table{color:#333;border:2px solid #000;border-radius:5px}
+.board_list table thead th{height:50px;font-size:14px;font-weight:normal;border:1px solid #b4b7b8;border-bottom:1px solid #000;background:#efefef}
 .board_list table tbody td{position:relative;z-index:1;height:55px;margin-top:1px;border:1px solid #b4b7b8;text-align:center;zoom:1}
 .board_list table tbody td.left{text-align:left;padding:0 20px}
 .board_list table tbody td a.link{display:block;color:#333}
@@ -326,15 +326,16 @@ html, body{width:100%;position:relative;z-index:1;}
 .board_write_bottom .button_area_left{float:left;}
 .board_write_bottom .button_area_right{float:right;}
 
-.board_view_top{padding-top:30px;padding-left:20px;padding-right:20px;padding-bottom:10px;color:#333}
+.board_view_title{padding-top:30px;font-size:16px;padding-left:20px;padding-right:20px;padding-bottom:10px;color:#333}
+.board_view_top{text-align:right;padding-left:20px;padding-top:10px;border-top:1px solid #ccc;padding-right:20px;padding-bottom:10px;color:#333}
 .board_view_top span{display:inline-block;*display:inline;zoom:1;padding-right:10px}
-.board_view_file{position:relative;padding:10px 20px 10px 120px;border-top:1px solid #eee}
+.board_view_file{position:relative;padding:10px 20px 10px 120px;border-top:1px solid #ccc}
 .board_view_file ul{}
-.board_view_file ul li{boder-top:1px solid #eee;}
+.board_view_file ul li{boder-top:1px solid #ccc;}
 .board_view_file ul li:first-child{border-top:0}
 .board_view_file ul li a{color:#333}
-.board_view_file .tit{position:absolute;left:20px;top:50%;margin-top:-10px;width:100px;color:#333}
-.board_view{padding-top:10px;border-top:1px solid #eee;border-bottom:1px solid #eee;}
+.board_view_file .tit{position:absolute;line-height:18px;left:20px;top:50%;margin-top:-10px;width:100px;color:#333}
+.board_view{padding-top:10px;border-top:1px solid #ccc;border-bottom:1px solid #eee;}
 .board_view .view_content{padding:20px;min-height:300px;color:#333}
 .board_view_bottom{padding-top:10px}
 .board_view_bottom .button_area_left{float:left;}
@@ -404,16 +405,15 @@ html, body{width:100%;position:relative;z-index:1;}
 	/* movie_list */
 	.movie_list ul{}
 	.movie_list ul li{position:relative;padding:10px 10px 10px 190px;background:#efefef;height:230px;border-bottom:1px solid #fff;border-radius:5px}
-	.movie_list ul li .img{position:absolute;left:10px;top:10px; bottom:0;width:160px;}
-	.movie_list ul li .img img{max-width:100%}
+	.movie_list ul li .img{overflow:hidden;position:absolute;left:10px;top:10px; bottom:10px;width:160px;}
+	.movie_list ul li .img img{width:100%}
 	.movie_list ul li .info{padding-top:10px}
 	.movie_list ul li .info dt{font-size:20px;padding:10px 0}
 	.movie_list ul li .info dd{font-size:15px;line-height:1.4em}
 	.movie_list ul li .movie_btn{position:absolute;bottom:20px;left:190px}
-	.movie_btn a{display:inline-block;padding:0 20px;height:50px;line-height:50px;color:#000;border:1px solid #000;background:#fff;text-align:center;font-size:15px;border-radius:25px}
+	.movie_btn a{display:inline-block;margin:0 5px;padding:0 20px;height:50px;line-height:50px;color:#000;border:1px solid #000;background:#fff;text-align:center;font-size:15px;border-radius:25px}
 	.movie_btn a:hover{background:#000;color:#fff;}
 	.movie_btn a span{color:#ff0000}
-	
 	.movie_content{margin-top:20px}
 	.movie_content .tab_content{padding:20px;line-height:1.8em;font-size:15px;}
 	
