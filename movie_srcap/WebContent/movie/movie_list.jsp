@@ -26,19 +26,23 @@
 					director = director.substring(0, director.lastIndexOf(", "));
 					var actor = items[i].actor.replace(/\|/g,", ");
 					actor = actor.substring(0,actor.lastIndexOf(", "));
+					var image = items[i].image;
 					
-					output += "<li><div class='img'><a href='${PATH }/movie/movie_view.jsp'><img src="+items[i].image+" /></a></div>";
+					if(image == "") {
+						output += "<li><div class='img'><a href='${PATH }/movie/movie_view.jsp'><img src='' alt='NO IMAGE' /></a></div>";
+					} else if(image != null) {
+						output += "<li><div class='img'><a href='${PATH }/movie/movie_view.jsp'><img src="+items[i].image+" /></a></div>";
+					}
 					
 					if(items[i].subtitle != null){
 						output += "<div class='info'><dl><dt>"+items[i].title+"</dt>";
 					} else {
 						output += "<div class='info'><dl><dt>"+items[i].title+" ("+items[i].subtitle+")"+"</dt>";
 					}
-					
-					output += "<dd>"+"감독 : "+director+"</dd>";
-					output += "<dd>"+"배우 : "+actor+"</dd>";
-					output += "<dd>"+"개봉년도 : "+items[i].pubDate+"</dd>";
-					output += "<dd>"+"평점 : "+items[i].userRating+"</dd>";
+					if(director != "") { output += "<dd>"+"감독 : "+director+"</dd>"; }
+					if(actor != "") { output += "<dd>"+"배우 : "+actor+"</dd>"; }
+					if(items[i].pubDate != null) { output += "<dd>"+"개봉년도 : "+items[i].pubDate+"</dd>"; }
+					if(items[i].userRating != null) { output += "<dd>"+"평점 : "+items[i].userRating+"</dd>"; }
 					output += "<dd class='movie_btn'><a href='${PATH }/movie/movie_view.jsp'>자세히보기</a>";
 					output += "<a href='#'>스크랩하기</a><a href='#'>토론하기</a>";
 					output += "</dl></div></li>";
