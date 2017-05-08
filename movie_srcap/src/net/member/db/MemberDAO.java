@@ -53,6 +53,34 @@ public class MemberDAO {
 		return result;
 		
 	}
+	public boolean LoginChk(MemberBean member ){
+		String sql = "select MB_ID, MB_PW from MEMBER where MB_ID=?";
+		boolean result = false;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMB_ID());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getString("MB_ID").equals(member.getMB_ID()) 
+						&& rs.getString("MB_PW").equals(member.getMB_PW())){
+					result = true; //아이디 비밀번호 일치
+				}
+			} else {
+				result = false; //아이디와 비밀번호가 일치 하지 않음
+			}
+		} catch (Exception e) {
+			System.out.println("isMember Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+		
+		return result;
+		
+	}
 	public int isMember(MemberBean member){
 		String sql = "select MB_PW from MEMBER where MB_ID=?";
 		int result = -1;
@@ -81,34 +109,42 @@ public class MemberDAO {
 		
 		return result;
 	}
-	public int findMyId(MemberBean member){
-		String sql = "select MB_ID, MB_NAME,MB_PH from MEMBER where MB_NAME = ? and MB_PH = ? ;";
-		String result = null;
-
+	public String findMyId(MemberBean member){
+		String sql = "select MB_NAME, MB_PH, MB_ID from MEMBER where MB_NAME = ? and MB_PH = ? ";
+		String result = "";
+		System.out.println("DAO 진입");
 		try {
 			con = ds.getConnection();
+			
+			System.out.println(member.toString());
+			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, member.getMB_ID());
+			pstmt.setString(1, member.getMB_NAME());
 			pstmt.setString(2, member.getMB_PH());
 			rs = pstmt.executeQuery();
-			if(rs.next()){
+			
+			
+			
+			if(rs.next() ){
 				if(rs.getString("MB_NAME").equals(member.getMB_NAME()) && 
 						rs.getString("MB_PH").equals(member.getMB_PH())){
-					result = member.setMB_ID(rs.getString("MB_ID")); //아이디 반환
+					//member.setMB_ID(rs.getString("MB_ID")); //아이디 반환
+					result = rs.getString("MB_ID");//아이디 찾기 완료
 				} else {
-					result = null;
+					result = "";
 				}
 			} else {
-				result = null; //아이디가 존재 x
+				result = ""; //아이디가 존재 x
 			}
 		} catch (Exception e) {
+			
 			System.out.println("findMyId Error : "+e);
 		} finally {
 			if(rs!=null) try { rs.close();} catch(SQLException ex){}
 			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
 			if(con!=null) try { con.close();} catch(SQLException ex){}
 		}
-		
+
 		return result;
 	}
 	
