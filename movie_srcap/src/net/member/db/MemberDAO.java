@@ -81,6 +81,65 @@ public class MemberDAO {
 		
 		return result;
 	}
+	public int findMyId(MemberBean member){
+		String sql = "select MB_ID, MB_NAME,MB_PH from MEMBER where MB_NAME = ? and MB_PH = ? ;";
+		String result = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMB_ID());
+			pstmt.setString(2, member.getMB_PH());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getString("MB_NAME").equals(member.getMB_NAME()) && 
+						rs.getString("MB_PH").equals(member.getMB_PH())){
+					result = member.setMB_ID(rs.getString("MB_ID")); //아이디 반환
+				} else {
+					result = null;
+				}
+			} else {
+				result = null; //아이디가 존재 x
+			}
+		} catch (Exception e) {
+			System.out.println("findMyId Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+		
+		return result;
+	}
+	
+	public int myPageAuth(MemberBean member){
+		String sql_1 = "select MB_PW from MEMBER where MB_ID=?";
+		int result = -1;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql_1);
+			pstmt.setString(1, member.getMB_ID());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getString("MB_PW").equals(member.getMB_PW())){
+					result = 1; //일치
+				} else {
+					result = 0;
+				}
+			} else {
+				result = -1; //아이디가 존재 x
+			}
+		} catch (Exception e) {
+			System.out.println("isMember Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+		
+		return result;
+	}
 	
 	public boolean joinMember(MemberBean member) throws SQLException{
 		String sql = "insert into MEMBER values(SEQ_member_num.nextval,?,?,?,?,?,?,?,?,'no')";
