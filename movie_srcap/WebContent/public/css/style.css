@@ -405,16 +405,15 @@ html, body{width:100%;position:relative;z-index:1;}
 	/* movie_list */
 	.movie_list ul{}
 	.movie_list ul li{position:relative;padding:10px 10px 10px 190px;background:#efefef;height:230px;border-bottom:1px solid #fff;border-radius:5px}
-	.movie_list ul li .img{position:absolute;left:10px;top:10px; bottom:0;width:160px;}
-	.movie_list ul li .img img{max-width:100%}
+	.movie_list ul li .img{overflow:hidden;position:absolute;left:10px;top:10px; bottom:10px;width:160px;}
+	.movie_list ul li .img img{width:100%}
 	.movie_list ul li .info{padding-top:10px}
 	.movie_list ul li .info dt{font-size:20px;padding:10px 0}
 	.movie_list ul li .info dd{font-size:15px;line-height:1.4em}
 	.movie_list ul li .movie_btn{position:absolute;bottom:20px;left:190px}
-	.movie_btn a{display:inline-block;padding:0 20px;height:50px;line-height:50px;color:#000;border:1px solid #000;background:#fff;text-align:center;font-size:15px;border-radius:25px}
+	.movie_btn a{display:inline-block;margin:0 5px;padding:0 20px;height:50px;line-height:50px;color:#000;border:1px solid #000;background:#fff;text-align:center;font-size:15px;border-radius:25px}
 	.movie_btn a:hover{background:#000;color:#fff;}
 	.movie_btn a span{color:#ff0000}
-	
 	.movie_content{margin-top:20px}
 	.movie_content .tab_content{padding:20px;line-height:1.8em;font-size:15px;}
 	
