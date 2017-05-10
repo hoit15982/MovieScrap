@@ -32,6 +32,7 @@
 
 			<div class="btn_area_center movie_btn">
 				<a href="">스크랩하기 <span>2,300</span></a>
+				<a href="">리뷰하기</a>
 				<a href="">토론하기</a>
 			</div>
 			<div class="movie_img_list slider_list">
