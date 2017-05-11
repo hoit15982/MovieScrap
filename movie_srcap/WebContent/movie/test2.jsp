@@ -5,14 +5,12 @@
 <%@page import="java.net.HttpURLConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	"남형남형"
 <%
 	request.setCharacterEncoding("UTF-8");
 	String key = "아이언맨";
-	
 	String apikey = "DE611070AD8C97B8FAE32AFB839EF9CA3E764F776407F406616C6FF56A2";// 애플리케이션 클라이언트 아이디값";
-	
 
-	
 	try {
 		/* String text = URLEncoder.encode(apikey, "UTF-8");
 		String text2 = URLEncoder.encode(key, "UTF-8"); */
