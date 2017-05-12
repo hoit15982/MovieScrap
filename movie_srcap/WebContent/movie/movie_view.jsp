@@ -11,7 +11,10 @@
 			<p class="text01">${movie.titleOrg }, ${movie.prodYear }</p>
 			<div class="movie_detail_top clearfix">
 				<div class="movie_img">
-					<img src="${movie.poster }" alt="" />
+					<c:forTokens items="${movie.poster}" delims="|" var="poster" begin="0" end="0">
+						<img src="${poster}" alt="" />
+					</c:forTokens>
+
 				</div>
 				<ul class="clear list01 movie_detail_area">
 					<li>${api }</li>
@@ -43,12 +46,12 @@
 				<h2 class="title02">영화이미지</h2>
 				<div class="viewer">
 					<ul class="clear clearfix">
-						<li><a href="#"><img src="${IMG_PATH }/poster/mv_img01.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="${IMG_PATH }/poster/mv_img02.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="${IMG_PATH }/poster/mv_img03.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="${IMG_PATH }/poster/mv_img04.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="${IMG_PATH }/poster/mv_img05.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="${IMG_PATH }/poster/mv_img01.jpg" alt="" /></a></li>
+						
+						<c:forTokens items="${movie.stlls}" delims="|" var="stlls">
+							<li><a href="#"><img src="${stlls}" alt="" /></a></li>
+						</c:forTokens>
+						
+						<%-- <li><a href="#"><img src="${IMG_PATH }/poster/mv_img01.jpg" alt="" /></a></li> --%>
 					</ul>
 				</div>
 				<div class="slider_nav"></div>
@@ -64,12 +67,13 @@
 						</ul>
 					
 						<div class="tab_content" id="tab_main">
-						${movie.plot }
+							${movie.plot }
 						</div>
 						<div class="tab_content" id="tab_actor">
+							${movie.actor }
 						</div>
 						<div class="tab_content" id="tab_video">
-						
+							<%-- ${movie.vodUrl } --%>
 						</div>	
 					</div>									
 				</div>

@@ -16,11 +16,19 @@ public class Movie {
 	private String movieId;
 	
 	
+	private String stlls;
+	
 	private String nation;
 	private String company;
 	private String plot;
 	private String genre;
 
+	public String getStlls() {
+		return stlls;
+	}
+	public void setStlls(String stlls) {
+		this.stlls = stlls;
+	}
 	
 
 	public String getNation() {

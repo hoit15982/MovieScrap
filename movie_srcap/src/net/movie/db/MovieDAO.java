@@ -24,9 +24,8 @@ public class MovieDAO {
 	ResultSet rs;
 	DataSource ds;
 	
-	private MovieDAO() {	// DB 연결 확인
+	private MovieDAO() {}
 
-	}
 	
 	static public MovieDAO getInstance(){
 		if( instance == null ){
@@ -163,6 +162,9 @@ public class MovieDAO {
 	
 					//포스터
 					movie.setPoster(resultObject.get("posters").toString());
+					
+					//스틸
+					movie.setStlls(resultObject.get("stlls").toString());
 					
 					//docID
 					movie.setDocId(resultObject.get("DOCID").toString());

@@ -5,7 +5,6 @@
 <%@page import="java.net.HttpURLConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	"남형남형"
 <%
 	request.setCharacterEncoding("UTF-8");
 	String key = "아이언맨";
