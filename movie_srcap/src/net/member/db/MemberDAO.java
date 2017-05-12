@@ -26,6 +26,31 @@ public class MemberDAO {
 			return;
 		}
 	}
+	public boolean MemberInfoUpdate(MemberBean member){
+		String sql = "UPDATE MEMBER SET MB_PW = ?, MB_PH = ?, MB_EMAIL = ?  WHERE MB_ID=?";
+		int result = 0;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMB_PW());
+			pstmt.setString(2, member.getMB_PH());
+			pstmt.setString(3, member.getMB_EMAIL());
+			pstmt.setString(4, member.getMB_ID());
+			result = pstmt.executeUpdate();
+			
+			if(result!=0){
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("joinMember Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+		return false;
+	}
+	
 	public boolean dupChk(String mb_id){
 		String sql = "select MB_ID from MEMBER where MB_ID=?";
 		boolean result = false;
@@ -41,6 +66,34 @@ public class MemberDAO {
 				}
 			} else {
 				result = true; //아이디가 존재 x
+			}
+		} catch (Exception e) {
+			System.out.println("isMember Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+		
+		return result;
+		
+	}
+	public boolean LoginChk(MemberBean member ){
+		String sql = "select MB_ID, MB_PW from MEMBER where MB_ID=?";
+		boolean result = false;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMB_ID());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getString("MB_ID").equals(member.getMB_ID()) 
+						&& rs.getString("MB_PW").equals(member.getMB_PW())){
+					result = true; //아이디 비밀번호 일치
+				}
+			} else {
+				result = false; //아이디와 비밀번호가 일치 하지 않음
 			}
 		} catch (Exception e) {
 			System.out.println("isMember Error : "+e);
@@ -81,35 +134,89 @@ public class MemberDAO {
 		
 		return result;
 	}
-	public int findMyId(MemberBean member){
-		String sql = "select MB_ID, MB_NAME,MB_PH from MEMBER where MB_NAME = ? and MB_PH = ? ;";
-		String result = null;
-
+	public String findMyId(MemberBean member){
+		String sql = "select MB_NAME, MB_PH, MB_ID from MEMBER where MB_NAME = ? and MB_PH = ? ";
+		String result = "";
+		System.out.println("DAO 진입");
 		try {
 			con = ds.getConnection();
+			
+			System.out.println(member.toString());
+			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, member.getMB_ID());
+			pstmt.setString(1, member.getMB_NAME());
 			pstmt.setString(2, member.getMB_PH());
 			rs = pstmt.executeQuery();
-			if(rs.next()){
+			
+			
+			
+			if(rs.next() ){
 				if(rs.getString("MB_NAME").equals(member.getMB_NAME()) && 
 						rs.getString("MB_PH").equals(member.getMB_PH())){
-					result = member.setMB_ID(rs.getString("MB_ID")); //아이디 반환
+					//member.setMB_ID(rs.getString("MB_ID")); //아이디 반환
+					result = rs.getString("MB_ID");//아이디 찾기 완료
 				} else {
-					result = null;
+					result = "";
 				}
 			} else {
-				result = null; //아이디가 존재 x
+				result = ""; //아이디가 존재 x
 			}
 		} catch (Exception e) {
+			
 			System.out.println("findMyId Error : "+e);
 		} finally {
 			if(rs!=null) try { rs.close();} catch(SQLException ex){}
 			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
 			if(con!=null) try { con.close();} catch(SQLException ex){}
 		}
-		
+
 		return result;
+	}
+	
+	public MemberBean memberUpdate(MemberBean member){
+		String sql = "select MB_ID, MB_PW, MB_NAME, MB_BIRTH, MB_GENDER, "
+				+ "MB_PH, MB_EMAIL FROM MEMBER WHERE MB_ID = ? and MB_PW = ?";
+		System.out.println("DAO 진입");
+		try {
+
+			System.out.println(member.toString());
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMB_ID());
+			pstmt.setString(2, member.getMB_PW());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next() ){
+				if(rs.getString("MB_ID").equals(member.getMB_ID()) && 
+						rs.getString("MB_PW").equals(member.getMB_PW())){
+					member.setMB_ID(rs.getString("MB_ID"));
+					member.setMB_PW(rs.getString("MB_PW"));
+					member.setMB_NAME(rs.getString("MB_NAME"));
+					member.setMB_BIRTH(rs.getString("MB_BIRTH"));
+					member.setMB_GENDER(rs.getString("MB_GENDER"));
+					member.setMB_PH(rs.getString("MB_PH"));
+					member.setMB_EMAIL(rs.getString("MB_EMAIL"));
+					
+					System.out.println("test successful");
+					//아이디 찾기 완료
+				} else {
+					System.out.println("아이디 비밀번호 일치하지 않음");
+					return null;//아이디 비밀번호가 일치 하지 않음
+				}
+			} else {
+				System.out.println("정보 조회 이상");
+				return null;//정보 조회 이상
+			}
+		} catch (Exception e) {
+			
+			System.out.println("findMyId Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+
+		return member;
 	}
 	
 	public int myPageAuth(MemberBean member){

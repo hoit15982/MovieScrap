@@ -50,6 +50,11 @@ public class MemberBean {
 	public void setMB_EMAIL(String mB_EMAIL) {
 		MB_EMAIL = mB_EMAIL;
 	}
+	@Override
+	public String toString() {
+		return "MemberBean [MB_ID=" + MB_ID + ", MB_PW=" + MB_PW + ", MB_NAME=" + MB_NAME + ", MB_BIRTH=" + MB_BIRTH
+				+ ", MB_GENDER=" + MB_GENDER + ", MB_PH=" + MB_PH + ", MB_EMAIL=" + MB_EMAIL + "]";
+	}
 	
 	
 	
