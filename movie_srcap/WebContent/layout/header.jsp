@@ -50,7 +50,7 @@
 			<div class="main_menu">
 				<h2 class="skip">메인메뉴</h2>
 				<ul class="clear clearfix">
-					<li><a href="${PATH }/movie/movie_list.jsp">영화정보</a></li>
+					<li><a href="MovieScrapList.bo">영화정보</a></li>
 					<li><a href="#">매거진</a></li>
 					<li><a href="${PATH }/board/list.jsp">토론방</a></li>
 					<li><a href="#">영화관정보</a></li>

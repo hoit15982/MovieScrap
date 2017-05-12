@@ -9,13 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
   <servlet>
-  	<servlet-name>MMovieFrontController</servlet-name>
-  	<servlet-class>net.movie.action.MMovieFrontController</servlet-class>
+    <servlet-name>MovieFrontController</servlet-name>
+    <servlet-class>net.movie.action.MovieFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>MMovieFrontController</servlet-name>
-  	<url-pattern>*.bo</url-pattern>
+    <servlet-name>MovieFrontController</servlet-name>
+    <url-pattern>*.bo</url-pattern>
   </servlet-mapping>
 </web-app>

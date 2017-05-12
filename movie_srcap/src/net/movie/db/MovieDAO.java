@@ -4,18 +4,38 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import net.movie.action.Movie;
+
 public class MovieDAO {
+	static private MovieDAO instance = null;
 	Connection con;
 	PreparedStatement pstmt;
 	ResultSet rs;
 	DataSource ds;
 	
-	public MovieDAO() {	// DB 연결 확인
+	private MovieDAO() {	// DB 연결 확인
+
+	}
+	
+	static public MovieDAO getInstance(){
+		if( instance == null ){
+			instance = new MovieDAO();
+		}
+		return instance;
+	}
+	
+	public void connection(){
 		try{
 			Context init = new InitialContext();
 			ds = (DataSource)init.lookup("java:comp/env/jdbc/OracleDB");
@@ -30,6 +50,7 @@ public class MovieDAO {
 		String sql = "insert into MovieScrap values(?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 		int result = 0;
 		try {
+			connection();
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, movie.getMs_no());
@@ -65,6 +86,7 @@ public class MovieDAO {
 		String sql="";
 		int result = 0;
 		try {
+			connection();
 			con = ds.getConnection();
 			pstmt = con.prepareStatement("select max(ms_no) from moviescrap");
 			rs = pstmt.executeQuery();
@@ -103,5 +125,76 @@ public class MovieDAO {
 			if(con!=null) try{con.close();} catch(SQLException e){}
 		}
 		return false;
+	}
+	
+	//영화 API 파싱 리스트 
+	public ArrayList<Movie> getMovieList(String data){
+		ArrayList<Movie> list = new ArrayList<>();
+		Movie movie = null;
+		try {
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject  = (JSONObject) jsonParser.parse(data);
+		JSONArray dataArray = (JSONArray) jsonObject.get("Data");
+		
+		JSONObject dataObject = (JSONObject) dataArray.get(0);
+		if( dataObject != null ){
+			JSONArray resultArray = (JSONArray) dataObject.get("Result");
+			
+			if( resultArray != null ){
+				for( int i = 0; i< resultArray.size(); i++ ){
+					JSONObject resultObject = (JSONObject) resultArray.get(i);
+					movie = new Movie();
+					movie.setTitle(resultObject.get("title").toString().replaceAll(" !HE ", "").replaceAll(" !HS ", "")); //제목
+					movie.setTitleOrg(resultObject.get("titleOrg").toString()); //titleOrg
+					
+					//감독
+					JSONArray directorArray = (JSONArray) resultObject.get("director");
+					JSONObject director = (JSONObject) directorArray.get(0);
+					movie.setDirector(director.get("directorNm").toString());
+					
+					//배우
+					JSONArray actorArray = (JSONArray) resultObject.get("actor");
+					ArrayList<String> actorlist = new ArrayList<>();
+					for( int j = 0; j < actorArray.size(); j++ ){
+						JSONObject actor = (JSONObject) actorArray.get(j);
+						actorlist.add(actor.get("actorNm").toString());
+					}
+					movie.setActor(actorlist);
+	
+					//포스터
+					movie.setPoster(resultObject.get("posters").toString());
+					
+					//docID
+					movie.setDocId(resultObject.get("DOCID").toString());
+					
+					//movieSeq
+					movie.setMovieSeq(resultObject.get("movieSeq").toString());
+					
+					//movieId
+					movie.setMovieId(resultObject.get("movieId").toString());
+					
+					//prodYear
+					movie.setProdYear( Integer.parseInt(resultObject.get("prodYear").toString()));
+					
+					//plot 
+					movie.setPlot(resultObject.get("plot").toString());
+					
+					//company
+					movie.setCompany(resultObject.get("company").toString());
+					
+					//nation
+					movie.setNation(resultObject.get("nation").toString());
+					
+					//genre
+					movie.setGenre(resultObject.get("genre").toString());
+					list.add(movie);
+				}
+			}
+		}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
