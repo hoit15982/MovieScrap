@@ -3,7 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% session.getAttribute("id"); %>
+<script type="text/javascript">
+<%
+if(request.getAttribute("msg")!=null){
+	String msg = "";
+	msg = (String)request.getAttribute("msg");
+System.out.println(msg);
+%>
+alert("<%=msg%>");
 
+<%
+	request.setAttribute("msg", null);
+
+System.out.println((String)request.getAttribute("msg"));
+}
+%>
+</script>
 <c:import url="${URL }/layout/header_sub.jsp"></c:import>
 <!-- 상단 시작 { -->
 <div class="header_top_wrap">
@@ -27,11 +43,15 @@
 		<!-- 글로벌메뉴 -->
 		<div class="top_global_menu">
 			<ul class="clear clearfix">
-				<li><a href="${PATH }/index.jsp">HOME</a></li>
-				<li class="first"><a href="${PATH }/member/logout.do">LOGOUT</a></li>
-				<li><a href="${PATH }/member/memberForm.jsp">MYPAGE</a></li>
+				<%if(session.getAttribute("id") != null) { %>
+				<li class="welcome_text"><%out.print(session.getAttribute("id"));%> 님 환영합니다.</li>
+				<li class="first"><a href="${PATH }/logout.me" id="logout">LOGOUT</a></li>
+				<li><a href="${PATH }/memberCheckPass.me">MYPAGE</a></li>		
+				<%} else{%>
 				<li class="first"><a href="${PATH }/member/loginForm.jsp">LOGIN</a></li>
 				<li><a href="${PATH }/member/joinIntro.jsp">JOIN</a></li>
+				<%} %>
+				<li><a href="${PATH }/index.jsp">HOME</a></li>	
 				
 			</ul>
 		</div>
@@ -50,9 +70,9 @@
 			<div class="main_menu">
 				<h2 class="skip">메인메뉴</h2>
 				<ul class="clear clearfix">
-					<li><a href="MovieScrapList.bo">영화정보</a></li>
+					<li><a href="${PATH }/movie/movie_list.jsp">영화정보</a></li>
 					<li><a href="#">매거진</a></li>
-					<li><a href="${PATH }/board/list.jsp">토론방</a></li>
+					<li><a href="#">토론방</a></li>
 					<li><a href="#">영화관정보</a></li>
 				</ul>
 				<a href="javascript:;" class="btn_all_menu">전체메뉴보기</a>
