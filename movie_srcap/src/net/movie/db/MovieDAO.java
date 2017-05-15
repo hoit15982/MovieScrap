@@ -62,9 +62,9 @@ public class MovieDAO {
 			}
 			
 			sql = "insert into MovieScrap (ms_no, mb_id, ms_title, ms_subtitle, "
-					+" ms_director, ms_poster, ms_userRating, ms_myRating, "
+					+" ms_director, ms_poster, ms_myRating, "
 					+" ms_review, ms_regdate, ms_rating, ms_seq, ms_id) "
-					+"values(?,?,?,?,?,?,?,?,?,sysdate,?,?,?)";
+					+"values(?,?,?,?,?,?,?,?,sysdate,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -73,12 +73,11 @@ public class MovieDAO {
 			pstmt.setString(4, movie.getMs_subtitle());
 			pstmt.setString(5, movie.getMs_director());
 			pstmt.setString(6, movie.getMs_poster());
-			pstmt.setInt(7, movie.getMs_userRating());
-			pstmt.setInt(8, movie.getMs_myRating());
-			pstmt.setString(9, movie.getMs_review());
-			pstmt.setString(10, movie.getMs_rating());
-			pstmt.setString(11, movie.getMs_seq());
-			pstmt.setString(12, movie.getMs_id());
+			pstmt.setInt(7, movie.getMs_myRating());
+			pstmt.setString(8, movie.getMs_review());
+			pstmt.setString(9, movie.getMs_rating());
+			pstmt.setString(10, movie.getMs_seq());
+			pstmt.setString(11, movie.getMs_id());
 			
 			result = pstmt.executeUpdate();
 			if(result != 0){
@@ -111,7 +110,7 @@ public class MovieDAO {
 				num =1;
 			}
 			sql = "insert into moviescrap (ms_no, mb_id, ms_title, ms_subtitle, "
-					+ " ms_director, ms_actor, ms_pubDate, ms_userRating,"
+					+ " ms_director, ms_actor, ms_pubDate, "
 					+ " ms_myRating, ms_img, ms_story, ms_review, ms_regdate) "
 					+ " values(?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 			

@@ -1,6 +1,8 @@
 package net.movie.action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,9 +41,16 @@ public class MovieScrapAddAction implements MAction{
 
 			moviedata.setMb_id("namhy");
 			
+			StringTokenizer st = new StringTokenizer(movie.getPoster(),"%|");
+
+			String poster = st.nextToken();
+			
+			
+			
 			moviedata.setMs_title(movie.getTitle());
 			moviedata.setMs_subtitle(movie.getTitleOrg());
 			moviedata.setMs_director(movie.getDirector());
+			moviedata.setMs_poster(poster);
 			moviedata.setMs_rating(movie.getRating());
 			moviedata.setMs_seq(seq);
 			moviedata.setMs_id(id);
@@ -52,10 +61,9 @@ public class MovieScrapAddAction implements MAction{
 			if(result == false){
 				System.out.println("스크랩 실패 !!");
 				return null;
-			}
+			} 
 			
-			
-			/*System.out.println(moviedata.toString());*/
+			System.out.println("스크랩 성공!!!");
 			
 			forward.setRedirect(true);
 			forward.setPath("./MovieScrapView.bo?id="+id+"&seq="+seq);

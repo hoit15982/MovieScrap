@@ -12,7 +12,7 @@
 <%
 	try{
 		String driverName="oracle.jdbc.driver.OracleDriver";
-		String dbURL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+		String dbURL = "jdbc:oracle:thin:@172.16.12.15:1521:xe";
 		Class.forName(driverName);
 		Connection conn = DriverManager.getConnection(dbURL,"soldesk","2017");
 		out.println("Oracle Database 접속.");

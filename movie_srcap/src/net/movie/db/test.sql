@@ -4,22 +4,19 @@ create table MovieScrap(
 	ms_title varchar2(50),
 	ms_subtitle varchar2(50),
 	ms_director varchar2(30),
-	ms_poster varchar2(500),
+	ms_poster varchar2(30),
+	ms_userRating number,
 	ms_myRating number,
 	ms_review varchar2(2000),
 	ms_regdate date,
 	ms_rating varchar(15),
 	ms_seq varchar2(15),
 	ms_id varchar2(15),	
-	primary key (ms_no)
+	primary key (mb_id)
 );
 
 drop table MovieScrap purge;
-delete from MovieScrap;
-
 select * from MovieScrap;
-
-
 
 
 

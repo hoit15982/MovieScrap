@@ -10,7 +10,6 @@ public class MovieBean {
 	private String ms_subtitle;		//subtitle 영어명
 	private String ms_director;		//director 감독
 	private String ms_poster;		//poster
-	private int ms_userRating;		//userRating
 	private int ms_myRating;		//myRating
 	private String ms_review;		//작성된 리뷰 
 	private Date ms_regdate;		//스크랩 날짜
@@ -85,12 +84,7 @@ public class MovieBean {
 		this.ms_director = ms_director;
 	}
 
-	public int getMs_userRating() {
-		return ms_userRating;
-	}
-	public void setMs_userRating(int ms_userRating) {
-		this.ms_userRating = ms_userRating;
-	}
+
 
 	public String getMs_review() {
 		return ms_review;
@@ -107,9 +101,9 @@ public class MovieBean {
 	@Override
 	public String toString() {
 		return "MovieBean [ms_no=" + ms_no + ", mb_id=" + mb_id + ", ms_title=" + ms_title + ", ms_subtitle="
-				+ ms_subtitle + ", ms_director=" + ms_director + ", ms_poster=" + ms_poster + ", ms_userRating="
-				+ ms_userRating + ", ms_myRating=" + ms_myRating + ", ms_review=" + ms_review + ", ms_regdate="
-				+ ms_regdate + ", ms_rating=" + ms_rating + ", ms_seq=" + ms_seq + ", ms_id=" + ms_id + "]";
+				+ ms_subtitle + ", ms_director=" + ms_director + ", ms_poster=" + ms_poster + ", ms_myRating="
+				+ ms_myRating + ", ms_review=" + ms_review + ", ms_regdate=" + ms_regdate + ", ms_rating=" + ms_rating
+				+ ", ms_seq=" + ms_seq + ", ms_id=" + ms_id + "]";
 	}
 
 

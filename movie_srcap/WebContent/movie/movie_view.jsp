@@ -89,7 +89,7 @@
 						<div class="tab_content" id="tab_video">
 							<%-- ${movie.vodUrl } --%>
 						</div>	
-					</div>									
+					</div>
 				</div>
 			</div>
 			<!-- //movie_content -->
