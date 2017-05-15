@@ -152,7 +152,8 @@ html, body{width:100%;position:relative;z-index:1;}
 	.top_global_menu ul li:first-child{background:none;}
 	.top_global_menu ul li{float:left;padding-left:10px;background:url(../images/common/blit_dot.gif) 5px 50% no-repeat}
 	.top_global_menu ul li a{display:block;line-height:40px;font-size:11px;color:#717171}
-
+	.top_global_menu ul li.welcome_text{line-height:40px;font-size:11px;color:#717171}
+	
 	/* header */
 	.header h1{position:absolute;left:0;top:15px;width:100px;z-index:100}
 	.header h1 a{display:block}
