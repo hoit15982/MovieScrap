@@ -9,14 +9,12 @@
 if(request.getAttribute("msg")!=null){
 	String msg = "";
 	msg = (String)request.getAttribute("msg");
-System.out.println(msg);
+	System.out.println(msg);
 %>
-alert("<%=msg%>");
-
+	alert("<%=msg%>");
 <%
 	request.setAttribute("msg", null);
-
-System.out.println((String)request.getAttribute("msg"));
+	System.out.println((String)request.getAttribute("msg"));
 }
 %>
 </script>
@@ -70,7 +68,7 @@ System.out.println((String)request.getAttribute("msg"));
 			<div class="main_menu">
 				<h2 class="skip">메인메뉴</h2>
 				<ul class="clear clearfix">
-					<li><a href="${PATH }/movie/movie_list.jsp">영화정보</a></li>
+					<li><a href="${PATH }/MovieScrapList.bo">영화정보</a></li>
 					<li><a href="#">매거진</a></li>
 					<li><a href="#">토론방</a></li>
 					<li><a href="#">영화관정보</a></li>
