@@ -8,7 +8,14 @@
 	<div class="content_area">
 		<div class="section movie_area">
 			<h2 class="title01">${movie.title }</h2>
-			<p class="text01">${movie.titleOrg }, ${movie.prodYear }</p>
+			<c:choose>
+				<c:when test="${movie.titleOrg == '' }">
+					<p class="text01">${movie.title }, ${movie.prodYear }</p>
+				</c:when>
+				<c:when test="${movie.titleOrg != null }">
+					<p class="text01">${movie.titleOrg }, ${movie.prodYear }</p>
+				</c:when>
+			</c:choose>
 			<div class="movie_detail_top clearfix">
 				<div class="movie_img">
 					<c:forTokens items="${movie.poster}" delims="|" var="poster" begin="0" end="0">
@@ -32,13 +39,20 @@
 						</c:forEach>
 						</span>
 					</li>
-					<li><span class="tit">등급</span>
-						<span class="con">전체관람가</span>
+					<li>
+						<span class="tit">등급</span>
+						<span class="con">${movie.rating }</span>
+					</li>
+					<li>
+						<span class="tit">상영시간</span>
+						<span class="con">${movie.runtime } 분</span>
 					</li>
 				</ul>
 			</div>
 			<div class="btn_area_center movie_btn">
-				<a href="">스크랩하기 <span>2,300</span></a>
+				<a href="./MovieScrapAdd.bo?id=${param.id }&seq=${param.seq}">
+					스크랩하기
+				</a>
 				<a href="">리뷰하기</a>
 				<a href="">토론하기</a>
 			</div>

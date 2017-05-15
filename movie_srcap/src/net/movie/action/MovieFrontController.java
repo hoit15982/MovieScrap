@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.movie.action.MovieScrapAction;
+
 import net.movie.action.MAction;
 import net.movie.action.MActionForward;
 
@@ -37,13 +37,20 @@ public class MovieFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/MovieReview.bo")){
+		} else if(command.equals("/MovieReview.bo")){
 			
 		} else if(command.equals("/MoviewModify.bo")){
 			
 		} else if(command.equals("/MovieDelete.bo")){
 			
-		} 
+		} else if(command.equals("/MovieScrapAdd.bo")){
+			action = new MovieScrapAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		if(forward != null){
 			if(forward.isRedirect()){

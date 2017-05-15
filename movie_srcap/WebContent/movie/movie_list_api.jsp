@@ -26,7 +26,7 @@
 				<a href="" class="btn02">스크랩순</a>
 			</div>
 
-			<!-- 영화본문 jQuery 로 뿌려줄 곳 -->
+			<!-- 뿌려줄 곳 -->
 			<div class="movie_list">
 				<ul class="clear">
 				<c:forEach items="${movieList }" var="movie">
@@ -50,7 +50,11 @@
 					</div>
 					<div class="info">
 						<dl>
-							<dt>${movie.title } (${movie.titleOrg })</dt>
+							<dt>${movie.title }
+								<c:if test="${movie.titleOrg != '' }">
+									(${movie.titleOrg })
+								</c:if>
+							</dt>
 							<dd>감독 : ${movie.director }</dd>
 							<dd>배우 : 
 							<c:forEach items="${movie.actor }" var="actor" varStatus="status">
@@ -59,8 +63,8 @@
 							</c:forEach>
 							</dd>
 							<dd class="movie_btn">
-								<a href="${PATH }/movie/movie_view.jsp">자세히보기</a>
-								<a href="#">스크랩하기</a>
+								<a href="MovieScrapView.bo?seq=${movie.movieSeq }&id=${movie.movieId }">자세히보기</a>
+								<a href="MovieScrapAdd.bo?seq=${movie.movieSeq }&id=${movie.movieId }">스크랩하기</a>
 								<a href="#">토론하기</a>
 							</dd>
 						</dl>
