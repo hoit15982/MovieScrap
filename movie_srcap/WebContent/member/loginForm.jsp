@@ -27,7 +27,7 @@
 					<input type="submit" value="LOGIN" class="btn_login">
 				</div>
 				<div class="login_save">
-					<span class="chk_area"><label><input type="checkbox" name="auto_login" id="login_auto_login"></label> 계정정보저장</span>
+					<span class="chk_area"><input type="checkbox" name="auto_login" id="login_auto_login" checked="checked"> 계정정보저장</span>
 				</div>
 				<div class="login_btn_area btn_area_left">
 					<a href="${PATH}/MemberIntro.me" class="btn02">회원가입</a>
