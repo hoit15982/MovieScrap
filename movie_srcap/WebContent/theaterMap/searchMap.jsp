@@ -7,10 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>좌표찍기</title>
-<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../public/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="http://openapi.map.naver.com/openapi/v2/maps.js?clientId=lowRtjfOo6Ap3e0CORe1"></script>
-
-
 
 <script type="text/javascript">
 
@@ -271,7 +269,7 @@ function onSuccess(data) {
 		    
 		var oSize = new nhn.api.map.Size(42, 60);
 		var oOffset = new nhn.api.map.Size(21, 60);
-		var oIcon = new nhn.api.map.Icon('../brown.png', oSize, oOffset);
+		var oIcon = new nhn.api.map.Icon('/movie_srcap/theaterMap/brown.png', oSize, oOffset);
 		   
 		// - Draggable Marker 의 경우 Icon 인자는 Sprite Icon이 된다.
 		// - 따라서 Sprite Icon 을 사용하기 위해 기본적으로 사용되는 값을 지정한다.

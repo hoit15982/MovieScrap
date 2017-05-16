@@ -30,7 +30,7 @@ public class MapFrontController extends HttpServlet implements javax.servlet.Ser
     	if(command.equals("/SearchMap.so")) {
     		forward = new ActionFoward();
     		forward.setRedirect(false);
-
+    		forward.setPath("./theaterMap/searchMap.jsp");
     	}
     	
     	if(forward != null) {
