@@ -57,6 +57,7 @@ public class MemberDAO {
 	public boolean MemberPwUpdate(MemberBean member){
 		String sql = "UPDATE MEMBER SET MB_PW = ?  WHERE MB_ID=?";
 		int result = 0;
+		boolean loginOk = false;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -65,8 +66,8 @@ public class MemberDAO {
 			result = pstmt.executeUpdate();
 			
 			if(result!=0){
-				return true;
-			}
+				loginOk= true;
+			}else{loginOk=false;}
 		} catch (Exception e) {
 			System.out.println("MemberPwReset Error : "+e);
 		} finally {
@@ -74,7 +75,7 @@ public class MemberDAO {
 			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
 			if(con!=null) try { con.close();} catch(SQLException ex){}
 		}
-		return false;
+		return loginOk;
 	}
 	
 	public boolean dupChk(String mb_id){
