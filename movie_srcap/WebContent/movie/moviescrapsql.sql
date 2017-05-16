@@ -14,7 +14,9 @@ create table MovieScrap(
 drop table MovieScrap purge;
 delete from MovieScrap;
 select * from MovieScrap;
+select * from MovieScrap where mb_id='namhy' and ms_seq='35443' and ms_id='F';
 
+select * from MEMBER;
 
 select * from MovieReview;
 select count(*) from MovieReview where mb_id='namhy' and ms_seq=35443 and ms_id='F';

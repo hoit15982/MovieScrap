@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/header.jsp"></c:import>
+<<<<<<< HEAD
 
 <script type="text/javascript">
 function tabreviewClick() {
@@ -11,6 +12,15 @@ function tabreviewClick() {
 }
 </script>
 
+=======
+<script type="text/javascript">
+function tabreviewClick() {
+	var top  = $('.movie_content').offset().top;
+	$('html, body').scrollTop(top);
+	tabProduct($(".movie_content"), 2);
+}
+</script>
+>>>>>>> refs/heads/team
 <!-- content -->
 <section class="content">
 	<div class="content_area">
@@ -59,11 +69,30 @@ function tabreviewClick() {
 			</div>
 			<div class="btn_area_center movie_btn">
 				<a href="./MovieScrapAdd.mv?id=${param.id }&seq=${param.seq}">
-					스크랩하기
+					스크랩
 				</a>
+<<<<<<< HEAD
+=======
+				<a href="./MovieScrapDelete.mv?id=${param.id }&seq=${param.seq}">
+					스크랩 삭제
+				</a>
+>>>>>>> refs/heads/team
 				<a href="javascript:tabreviewClick()"  id="id_review">리뷰하기</a>
 				<a href="">토론하기</a>
 			</div>
+		
+			<div>
+				<h2 class="title01">영화 동영상</h2>
+				<div class="youtube_list_area">
+					<h2 class="title02">영화 동영상</h2>
+					<div class="viewer">
+						<ul class="clear clearfix" id="youtube_list">
+						</ul>
+					</div>
+				</div>
+				<div class="youtube_player" id="player"></div>
+			</div>
+		
 			<div class="movie_img_list slider_list">
 				<h2 class="title02">영화이미지</h2>
 				<div class="viewer">
@@ -72,7 +101,6 @@ function tabreviewClick() {
 						<c:forTokens items="${movie.stlls}" delims="|" var="stlls">
 							<li><a href="#"><img src="${stlls}" alt="" /></a></li>
 						</c:forTokens>
-						
 						<%-- <li><a href="#"><img src="${IMG_PATH }/poster/mv_img01.jpg" alt="" /></a></li> --%>
 					</ul>
 				</div>
@@ -85,7 +113,10 @@ function tabreviewClick() {
 						<ul class="clearfix clear tab_title">
 							<li><a href="#tab_main">주요정보</a></li>
 							<li><a href="#tab_actor">배우제작진</a></li>
+<<<<<<< HEAD
 							<li><a href="#tab_video">동영상</a></li>
+=======
+>>>>>>> refs/heads/team
 							<li><a href="#tab_review">리뷰</a></li>
 						</ul>
 					
@@ -94,9 +125,6 @@ function tabreviewClick() {
 						</div>
 						<div class="tab_content" id="tab_actor">
 							${movie.actor }
-						</div>
-						<div class="tab_content" id="tab_video">
-							<%-- ${movie.vodUrl } --%>
 						</div>
 						<form action="./MovieReview.mv?id=${param.id }&seq=${param.seq}" method="post" id="frm"> 
 						<div class="tab_content" id="tab_review">
@@ -130,6 +158,34 @@ function tabreviewClick() {
 			<!-- //movie_content -->
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.ajax({
+				dataType : "json",
+				url : "https://www.googleapis.com/youtube/v3/search",
+				data : {
+					"part" : "snippet",
+					"q" : "${movie.title } 예고편",
+					"key" : "AIzaSyCrjthm-LB1bS-W5ejJMnBNnTgXFE0DK6M"
+				}
+			}).done(function(data){
+				var youtube_img = "";
+				
+				for( var i = 0; i<data.items.length;i++){
+					youtube_img += "<li><a href=javascript:yt_play('"+data.items[i].id.videoId+"')><img src="+data.items[i].snippet.thumbnails.default.url+" /></a></li>";
+				}
+
+				$("#youtube_list").append(youtube_img);
+		
+			});
+		});
+		
+		function yt_play(youtube_id){
+			var player = $("#player");
+			var output = '<iframe id="video" width="80%" height="500" src="//www.youtube.com/embed/'+youtube_id+'?rel=0" frameborder="0" allowfullscreen></iframe>';
+			player.empty().append(output);
+		}
+	</script>	
 </section>
 <!-- //content -->
 

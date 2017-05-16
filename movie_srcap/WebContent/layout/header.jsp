@@ -68,13 +68,12 @@ if(request.getAttribute("msg")!=null){
 			<div class="main_menu">
 				<h2 class="skip">메인메뉴</h2>
 				<ul class="clear clearfix">
-					<li><a href="${PATH }/MovieScrapList.bo">영화정보</a></li>
+					<li><a href="${PATH }/MovieScrapList.mv">영화정보</a></li>
 					<li><a href="#">매거진</a></li>
 					<li><a href="${PATH }/BoardListAction.bo">토론방</a></li>
-					<li><a href="#">영화관정보</a></li>
+					<li><a href="${PATH }/SearchMap.so">영화관정보</a></li>
 				</ul>
 				<a href="javascript:;" class="btn_all_menu">전체메뉴보기</a>
-
 				<a href="${PATH }/member/join.do" class="btn_join_go">회원가입</a>
 			</div>
 			<div class="main_bottom_menu">
@@ -84,7 +83,6 @@ if(request.getAttribute("msg")!=null){
 					<li><a href="">2014 - Concpet3 </a></li>
 					<li><a href="">2013 - collection</a></li>
 				</ul>
-				
 			</div>
 			<!-- //main_menu -->
 		</div>

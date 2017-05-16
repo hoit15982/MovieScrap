@@ -1,15 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="../layout/header.jsp"></c:import>
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>좌표찍기</title>
-<script src="../public/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="http://openapi.map.naver.com/openapi/v2/maps.js?clientId=lowRtjfOo6Ap3e0CORe1"></script>
-
 <script type="text/javascript">
 
 $(function(){
@@ -28,7 +22,7 @@ function getAjax(){
 	
 	$.ajax({
 		type : "post",
-		url  : "./apimap.jsp",
+		url  : "${PATH}/theaterMap/apimap.jsp",
 		dataType : "json",
 		data : formData,
 		success : onSuccess
@@ -319,5 +313,4 @@ function onSuccess(data) {
 </div>
 
 
-</body>
-</html>
+<c:import url="../layout/footer.jsp"></c:import>
