@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Movie {
 	private String title;
 	private String titleOrg;
-	private int prodYear;
+	private String prodYear;
 	private String director;
 	private ArrayList<String> actor;
 	private String poster;
@@ -17,12 +17,32 @@ public class Movie {
 	
 	
 	private String stlls;
+	private String runtime;
+	
+	private String rating;
 	
 	private String nation;
 	private String company;
 	private String plot;
 	private String genre;
-
+	
+	
+	
+	
+	
+	
+	public String getRating() {
+		return rating;
+	}
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+	public String getRuntime() {
+		return runtime;
+	}
+	public void setRuntime(String runtime) {
+		this.runtime = runtime;
+	}
 	public String getStlls() {
 		return stlls;
 	}
@@ -87,10 +107,10 @@ public class Movie {
 	public void setTitleOrg(String titleOrg) {
 		this.titleOrg = titleOrg;
 	}
-	public int getProdYear() {
+	public String getProdYear() {
 		return prodYear;
 	}
-	public void setProdYear(int prodYear) {
+	public void setProdYear(String prodYear) {
 		this.prodYear = prodYear;
 	}
 	public String getDirector() {
@@ -116,8 +136,11 @@ public class Movie {
 	@Override
 	public String toString() {
 		return "Movie [title=" + title + ", titleOrg=" + titleOrg + ", prodYear=" + prodYear + ", director=" + director
-				+ ", actor=" + actor + ", poster=" + poster + "]";
+				+ ", actor=" + actor + ", poster=" + poster + ", docId=" + docId + ", movieSeq=" + movieSeq
+				+ ", movieId=" + movieId + ", stlls=" + stlls + ", runtime=" + runtime + ", rating=" + rating
+				+ ", nation=" + nation + ", company=" + company + ", plot=" + plot + ", genre=" + genre + "]";
 	}
+
 
 
 	

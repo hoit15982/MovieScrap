@@ -8,7 +8,14 @@
 	<div class="content_area">
 		<div class="section movie_area">
 			<h2 class="title01">${movie.title }</h2>
-			<p class="text01">${movie.titleOrg }, ${movie.prodYear }</p>
+			<c:choose>
+				<c:when test="${movie.titleOrg == '' }">
+					<p class="text01">${movie.title }, ${movie.prodYear }</p>
+				</c:when>
+				<c:when test="${movie.titleOrg != null }">
+					<p class="text01">${movie.titleOrg }, ${movie.prodYear }</p>
+				</c:when>
+			</c:choose>
 			<div class="movie_detail_top clearfix">
 				<div class="movie_img">
 					<c:forTokens items="${movie.poster}" delims="|" var="poster" begin="0" end="0">
@@ -19,7 +26,7 @@
 				<ul class="clear list01 movie_detail_area">
 					<li>${api }</li>
 					<li><span class="tit">개요</span>
-						<span class="con">${movie.genre }</span>				
+						<span class="con">${movie.genre }</span>
 					</li>
 					<li><span class="tit">감독</span>
 						<span class="con">${movie.director }</span>
@@ -32,14 +39,21 @@
 						</c:forEach>
 						</span>
 					</li>
-					<li><span class="tit">등급</span>
-						<span class="con">전체관람가</span>
+					<li>
+						<span class="tit">등급</span>
+						<span class="con">${movie.rating }</span>
+					</li>
+					<li>
+						<span class="tit">상영시간</span>
+						<span class="con">${movie.runtime } 분</span>
 					</li>
 				</ul>
 			</div>
 			<div class="btn_area_center movie_btn">
-				<a href="">스크랩하기 <span>2,300</span></a>
-				<a href="">리뷰하기</a>
+				<a href="./MovieScrapAdd.mv?id=${param.id }&seq=${param.seq}">
+					스크랩하기
+				</a>
+				<a href="$('#tabreview').focus();">리뷰하기</a>
 				<a href="">토론하기</a>
 			</div>
 			<div class="movie_img_list slider_list">
@@ -64,6 +78,7 @@
 							<li><a href="#tab_main">주요정보</a></li>
 							<li><a href="#tab_actor">배우제작진</a></li>
 							<li><a href="#tab_video">동영상</a></li>
+							<li><a href="#tab_review" id="tabreview">리뷰</a></li>
 						</ul>
 					
 						<div class="tab_content" id="tab_main">
@@ -74,8 +89,34 @@
 						</div>
 						<div class="tab_content" id="tab_video">
 							<%-- ${movie.vodUrl } --%>
-						</div>	
-					</div>									
+						</div>
+						<form action="./MovieReview.mv?id=${param.id }&seq=${param.seq}" method="post" id="frm"> 
+						<div class="tab_content" id="tab_review">
+							<textarea name="ms_review" id="ms_review" cols="50" rows="17" ></textarea>
+							<br>
+							<div><label for="ms_myRating">평점&nbsp;&nbsp;</label>
+								<select id="ms_myRating" name="ms_myRating">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5" selected="selected">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+							</div>
+							<br>
+							<ul class="clearfix clear tab_title">
+								<li><a href="#" onclick="document.getElementById('frm').submit();">저장</a></li>
+								<li><a href="#" onclick="document.getElementById('frm').reset()">다시작성</a></li>
+							</ul>
+						</div>
+						</form>
+					</div>
 				</div>
 			</div>
 			<!-- //movie_content -->

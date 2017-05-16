@@ -1,4 +1,4 @@
-package net.movie.action;
+package net.movie.db;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

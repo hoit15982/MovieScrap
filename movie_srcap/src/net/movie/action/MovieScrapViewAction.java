@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.movie.db.MovieAPI;
 import net.movie.db.MovieDAO;
 
 public class MovieScrapViewAction implements MAction {
