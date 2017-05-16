@@ -26,7 +26,7 @@
 				<ul class="clear list01 movie_detail_area">
 					<li>${api }</li>
 					<li><span class="tit">개요</span>
-						<span class="con">${movie.genre }</span>				
+						<span class="con">${movie.genre }</span>
 					</li>
 					<li><span class="tit">감독</span>
 						<span class="con">${movie.director }</span>
@@ -53,7 +53,7 @@
 				<a href="./MovieScrapAdd.bo?id=${param.id }&seq=${param.seq}">
 					스크랩하기
 				</a>
-				<a href="">리뷰하기</a>
+				<a href="./MovieReview.bo?id=${param.id }&seq=${param.seq}">리뷰하기</a>
 				<a href="">토론하기</a>
 			</div>
 			<div class="movie_img_list slider_list">
@@ -78,6 +78,7 @@
 							<li><a href="#tab_main">주요정보</a></li>
 							<li><a href="#tab_actor">배우제작진</a></li>
 							<li><a href="#tab_video">동영상</a></li>
+							<li><a href="#tab_review">리뷰</a></li>
 						</ul>
 					
 						<div class="tab_content" id="tab_main">
@@ -88,6 +89,18 @@
 						</div>
 						<div class="tab_content" id="tab_video">
 							<%-- ${movie.vodUrl } --%>
+						</div>	
+						<div class="tab_content" id="tab_review">
+							<textarea name="" id="" cols="50" rows="17" ></textarea>
+							<br>
+							<div><label for="ms_myRating">평점&nbsp;&nbsp;</label>
+							<input type="text" id="ms_myRating" name="ms_myRating" size="2" maxlength="2" min="0" max="10" placeholder="/10"/>
+							</div>
+							<br>
+							<ul class="clearfix clear tab_title">
+								<li><a href="./MovieReview.bo?id=${param.id }&seq=${param.seq}">저장</a></li>
+								<li><a href="#">다시작성</a></li>
+							</ul>
 						</div>	
 					</div>
 				</div>

@@ -38,6 +38,12 @@ public class MovieFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		} else if(command.equals("/MovieReview.bo")){
+			action = new MovieScrapReviewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		} else if(command.equals("/MoviewModify.bo")){
 			
@@ -45,6 +51,13 @@ public class MovieFrontController extends HttpServlet{
 			
 		} else if(command.equals("/MovieScrapAdd.bo")){
 			action = new MovieScrapAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MovieMyList.bo")){
+			action = new MovieScrapMyListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
