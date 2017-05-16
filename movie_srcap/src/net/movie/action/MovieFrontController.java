@@ -51,7 +51,7 @@ public class MovieFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MoviewModify.mv")){
+		} else if(command.equals("/MoviewReviewModify.mv")){
 			
 		} else if(command.equals("/MovieScrapDelete.mv")){
 			action = new MovieScrapDeleteAction();

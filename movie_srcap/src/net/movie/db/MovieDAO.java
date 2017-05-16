@@ -94,7 +94,6 @@ public class MovieDAO {
 	public boolean MSScrapDelete(MovieBean movie){
 		String sql = "";
 		int result = 0;
-		int num = 0;
 		try {
 			connection();
 			con = ds.getConnection();
@@ -193,6 +192,43 @@ public class MovieDAO {
 			if(rs!=null) try{rs.close();} catch(SQLException e){}
 			if(pstmt!=null) try{pstmt.close();} catch(SQLException e){}
 			if(con!=null) try{con.close();} catch(SQLException e){}
+		}
+		return false;
+	}
+	
+	
+	//글쓴이 인지 확인
+	public boolean isScrapWriter(String mb_id, String ms_seq, String ms_id){
+		System.out.println("mb_id="+mb_id);
+		System.out.println("ms_seq="+ms_seq);
+		System.out.println("ms_id="+ms_id);
+		String sql = "select * from MovieScrap where "
+				+ " mb_id=? and ms_seq=? and ms_id=?";
+		
+		try {
+			connection();
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb_id);
+			pstmt.setString(2, ms_seq);
+			pstmt.setString(3, ms_id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			if(mb_id.equals("namhy")){
+				return true;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("isScrapWriter Error : "+e);
+			System.out.println(e.toString());
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e2) {
+			}
 		}
 		return false;
 	}
