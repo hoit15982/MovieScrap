@@ -32,8 +32,26 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MovieFrontController</servlet-name>
+		<url-pattern>*.mv</url-pattern>
+	</servlet-mapping>
+	 <servlet>
+		<description>Controller</description>
+		<display-name>BoardController</display-name>
+		<servlet-name>BoardController</servlet-name>
+		<servlet-class>jsp.board.action.BoardController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardController</servlet-name>
 		<url-pattern>*.bo</url-pattern>
 	</servlet-mapping>
-
-
+	 <servlet>
+		<description>Controller</description>
+		<display-name>CommentController</display-name>
+		<servlet-name>CommentController</servlet-name>
+		<servlet-class>jsp.board.comment.action.CommentController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentController</servlet-name>
+		<url-pattern>*.co</url-pattern>
+	</servlet-mapping>
 </web-app>
