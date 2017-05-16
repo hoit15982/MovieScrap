@@ -2,8 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/header.jsp"></c:import>
-<<<<<<< HEAD
-
+<script type="text/javascript">
+function tabreviewClick() {
+	var top  = $('.movie_content').offset().top;
+	$('html, body').scrollTop(top);
+	tabProduct($(".movie_content"), 2);
+}
+</script>
 <script type="text/javascript">
 function tabreviewClick() {
 	var top  = $('.movie_content').offset().top;
@@ -12,15 +17,6 @@ function tabreviewClick() {
 }
 </script>
 
-=======
-<script type="text/javascript">
-function tabreviewClick() {
-	var top  = $('.movie_content').offset().top;
-	$('html, body').scrollTop(top);
-	tabProduct($(".movie_content"), 2);
-}
-</script>
->>>>>>> refs/heads/team
 <!-- content -->
 <section class="content">
 	<div class="content_area">
@@ -71,12 +67,9 @@ function tabreviewClick() {
 				<a href="./MovieScrapAdd.mv?id=${param.id }&seq=${param.seq}">
 					스크랩
 				</a>
-<<<<<<< HEAD
-=======
 				<a href="./MovieScrapDelete.mv?id=${param.id }&seq=${param.seq}">
 					스크랩 삭제
 				</a>
->>>>>>> refs/heads/team
 				<a href="javascript:tabreviewClick()"  id="id_review">리뷰하기</a>
 				<a href="">토론하기</a>
 			</div>
@@ -113,10 +106,6 @@ function tabreviewClick() {
 						<ul class="clearfix clear tab_title">
 							<li><a href="#tab_main">주요정보</a></li>
 							<li><a href="#tab_actor">배우제작진</a></li>
-<<<<<<< HEAD
-							<li><a href="#tab_video">동영상</a></li>
-=======
->>>>>>> refs/heads/team
 							<li><a href="#tab_review">리뷰</a></li>
 						</ul>
 					
