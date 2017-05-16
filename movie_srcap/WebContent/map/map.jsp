@@ -56,10 +56,10 @@
 					for( var i = 0; i< items.length;i++){
 						var x = (i+1)*0.01;
 						var y = (i+1)*0.001;
-						console.log(x+"/"+y);
+						console.log(items[i].mapx+"/"+items[i].mapy);
+						
 						var oMarker2 = new nhn.api.map.Marker(oIcon, { title : '마커옆에 떠 있는 설명 을 이곳에 적어주세요 ' });  //마커 생성 
-			//			oMarker2.setPoint(new nhn.api.map.LatLng(37.5011226+x, 127.0391037+y)); //마커 표시할 좌표 선택
-						oMarker2.setPoint(new nhn.api.map.Tm128(items[i].mapx, items[i].mapy)); //마커 표시할 좌표 선택
+						oMarker2.setPoint(new nhn.api.map.TM128(items[i].mapx, items[i].mapy).toLatLng()); //마커 표시할 좌표 선택
 						oMap.addOverlay(oMarker2); //마커를 지도위에 표현 
 						output+="<li>"+items[i].address+"////"+items[i].mapx+"//"+items[i].mapy+"</li>";
 					}
