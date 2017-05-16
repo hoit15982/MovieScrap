@@ -42,9 +42,7 @@ public class MovieScrapAddAction implements MAction{
 			moviedata.setMb_id("namhy");
 			
 			StringTokenizer st = new StringTokenizer(movie.getPoster(),"%|");
-
 			String poster = st.nextToken();
-			
 			
 			
 			moviedata.setMs_title(movie.getTitle());
@@ -66,7 +64,7 @@ public class MovieScrapAddAction implements MAction{
 			System.out.println("스크랩 성공!!!");
 			
 			forward.setRedirect(true);
-			forward.setPath("./MovieScrapView.bo?id="+id+"&seq="+seq);
+			forward.setPath("./MovieScrapView.mv?id="+id+"&seq="+seq);
 			return forward;
 		} catch (Exception e) {
 			e.printStackTrace();

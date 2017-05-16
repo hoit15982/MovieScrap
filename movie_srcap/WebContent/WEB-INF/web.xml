@@ -32,7 +32,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MovieFrontController</servlet-name>
-		<url-pattern>*.bo</url-pattern>
+		<url-pattern>*.mv</url-pattern>
 	</servlet-mapping>
 
 

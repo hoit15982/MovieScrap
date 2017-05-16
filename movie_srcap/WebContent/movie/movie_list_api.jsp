@@ -12,7 +12,7 @@
 			<h2 class="title01">영화 정보</h2>
 			
 			<!-- 검색 -->
-			<form action="MovieScrapList.bo" method="get">
+			<form action="MovieScrapList.mv" method="get">
 			<label class="tit" for="stx">검색할 영화제목을 입력해주세요.</label>
 			<input type="text" name="stx" id="stx" value="" size="40" />
 			<input type="submit"  class="btn01" value="영화검색" />
@@ -32,7 +32,7 @@
 				<c:forEach items="${movieList }" var="movie">
 				<li>
 					<div class="img">
-						<a href="MovieScrapView.bo?seq=${movie.movieSeq }&id=${movie.movieId }">
+						<a href="MovieScrapView.mv?seq=${movie.movieSeq }&id=${movie.movieId }">
 						<c:forTokens items="${movie.poster }" delims="|" var="item" begin="0" end="0">
 						<c:choose>
 							<c:when test="${item == 'http://file.koreafilm.or.kr/thm/02/00/02/55/tn_DPF005962.JPG' }">
@@ -63,8 +63,8 @@
 							</c:forEach>
 							</dd>
 							<dd class="movie_btn">
-								<a href="MovieScrapView.bo?seq=${movie.movieSeq }&id=${movie.movieId }">자세히보기</a>
-								<a href="MovieScrapAdd.bo?seq=${movie.movieSeq }&id=${movie.movieId }">스크랩하기</a>
+								<a href="MovieScrapView.mv?seq=${movie.movieSeq }&id=${movie.movieId }">자세히보기</a>
+								<a href="MovieScrapAdd.mv?seq=${movie.movieSeq }&id=${movie.movieId }">스크랩하기</a>
 								<a href="#">토론하기</a>
 							</dd>
 						</dl>

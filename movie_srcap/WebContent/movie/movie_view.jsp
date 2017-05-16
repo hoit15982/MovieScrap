@@ -50,10 +50,10 @@
 				</ul>
 			</div>
 			<div class="btn_area_center movie_btn">
-				<a href="./MovieScrapAdd.bo?id=${param.id }&seq=${param.seq}">
+				<a href="./MovieScrapAdd.mv?id=${param.id }&seq=${param.seq}">
 					스크랩하기
 				</a>
-				<a href="./MovieReview.bo?id=${param.id }&seq=${param.seq}">리뷰하기</a>
+				<a href="$('#tabreview').focus();">리뷰하기</a>
 				<a href="">토론하기</a>
 			</div>
 			<div class="movie_img_list slider_list">
@@ -78,7 +78,7 @@
 							<li><a href="#tab_main">주요정보</a></li>
 							<li><a href="#tab_actor">배우제작진</a></li>
 							<li><a href="#tab_video">동영상</a></li>
-							<li><a href="#tab_review">리뷰</a></li>
+							<li><a href="#tab_review" id="tabreview">리뷰</a></li>
 						</ul>
 					
 						<div class="tab_content" id="tab_main">
@@ -89,19 +89,33 @@
 						</div>
 						<div class="tab_content" id="tab_video">
 							<%-- ${movie.vodUrl } --%>
-						</div>	
+						</div>
+						<form action="./MovieReview.mv?id=${param.id }&seq=${param.seq}" method="post" id="frm"> 
 						<div class="tab_content" id="tab_review">
-							<textarea name="" id="" cols="50" rows="17" ></textarea>
+							<textarea name="ms_review" id="ms_review" cols="50" rows="17" ></textarea>
 							<br>
 							<div><label for="ms_myRating">평점&nbsp;&nbsp;</label>
-							<input type="text" id="ms_myRating" name="ms_myRating" size="2" maxlength="2" min="0" max="10" placeholder="/10"/>
+								<select id="ms_myRating" name="ms_myRating">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5" selected="selected">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
 							</div>
 							<br>
 							<ul class="clearfix clear tab_title">
-								<li><a href="./MovieReview.bo?id=${param.id }&seq=${param.seq}">저장</a></li>
-								<li><a href="#">다시작성</a></li>
+								<li><a href="#" onclick="document.getElementById('frm').submit();">저장</a></li>
+								<li><a href="#" onclick="document.getElementById('frm').reset()">다시작성</a></li>
 							</ul>
-						</div>	
+						</div>
+						</form>
 					</div>
 				</div>
 			</div>
