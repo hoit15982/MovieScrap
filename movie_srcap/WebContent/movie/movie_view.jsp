@@ -3,6 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/header.jsp"></c:import>
 
+<script type="text/javascript">
+function tabreviewClick() {
+	var top  = $('.movie_content').offset().top;
+	$('html, body').scrollTop(top);
+	tabProduct($(".movie_content"), 2);
+}
+</script>
+
 <!-- content -->
 <section class="content">
 	<div class="content_area">
@@ -53,7 +61,7 @@
 				<a href="./MovieScrapAdd.mv?id=${param.id }&seq=${param.seq}">
 					스크랩하기
 				</a>
-				<a href="$('#tabreview').focus();">리뷰하기</a>
+				<a href="javascript:tabreviewClick()"  id="id_review">리뷰하기</a>
 				<a href="">토론하기</a>
 			</div>
 			<div class="movie_img_list slider_list">
@@ -78,7 +86,7 @@
 							<li><a href="#tab_main">주요정보</a></li>
 							<li><a href="#tab_actor">배우제작진</a></li>
 							<li><a href="#tab_video">동영상</a></li>
-							<li><a href="#tab_review" id="tabreview">리뷰</a></li>
+							<li><a href="#tab_review">리뷰</a></li>
 						</ul>
 					
 						<div class="tab_content" id="tab_main">

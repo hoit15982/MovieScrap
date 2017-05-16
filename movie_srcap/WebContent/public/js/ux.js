@@ -315,6 +315,7 @@ function tabProduct(el, init_num){
 	var tab_con = $(el).find('.tab_content');
 
 	var init = function(){
+		tab_list.children('a').removeClass('on');
 		tab_list.eq(init_num).children('a').addClass('on');
 		tab_con.hide();
 		tab_con.eq(init_num).show();
