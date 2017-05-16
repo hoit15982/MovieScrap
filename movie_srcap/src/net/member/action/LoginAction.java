@@ -25,26 +25,36 @@ public class LoginAction implements Action {
 		System.out.println(request.getParameter("mb_id"));
 		System.out.println(request.getParameter("mb_pw"));
 		System.out.println(request.getParameter("auto_login"));
-		if (request.getParameter("auto_login").equals("on")) {
-			Cookie[] cookies = request.getCookies();
 
+		Cookie[] cookies = request.getCookies();
+		if (request.getParameter("auto_login") != null) {
+			if (request.getParameter("auto_login").equals("on")) {
+				if (cookies != null && cookies.length > 0) {
+					for (int i = 0; i < cookies.length; i++) {
+						if (cookies[i].getName().equals("autologin")) {
+							cookies[i].setMaxAge(60 * 60 * 24 * 30);
+							response.addCookie(cookies[i]);
+							System.out.println(cookies[i].getValue().toString());
+						} else {
+							Cookie cookie = new Cookie("autologin", member.getMB_ID());
+							cookie.setMaxAge(60 * 60 * 24 * 30);
+							response.addCookie(cookie);
+							System.out.println(cookies[i].getValue().toString());
+						}
+					}
+				} 
+			}
+		}
+		else if(request.getParameter("auto_login")==null) {
 			if (cookies != null && cookies.length > 0) {
 				for (int i = 0; i < cookies.length; i++) {
-					if(cookies[i].getName().equals("autologin")){
-						cookies[i].setMaxAge(60*60*24*30);
+					if (cookies[i].getName().equals("autologin")) {
+						cookies[i].setMaxAge(0);
 						response.addCookie(cookies[i]);
 						System.out.println(cookies[i].getValue().toString());
-					}else{
-						Cookie cookie = new Cookie("autologin", member.getMB_ID());
-						cookie.setMaxAge(60 * 60 * 24 * 30);
-						response.addCookie(cookie);
-						System.out.println(cookies[i].getValue().toString());
 					}
+
 				}
-			} else {
-				Cookie cookie = new Cookie("autologin", member.getMB_ID());
-				cookie.setMaxAge(60 * 60 * 24 * 30);
-				response.addCookie(cookie);
 			}
 		}
 		System.out.println("로그인 시도");

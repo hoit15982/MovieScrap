@@ -2,7 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/header.jsp"></c:import>
+<%
 
+Cookie[] cookies= request.getCookies();
+String autoLoging="";
+if (cookies != null && cookies.length > 0) {
+	for (int i = 0; i < cookies.length; i++) {
+		if(cookies[i].getName().equals("autologin")){
+			autoLoging = cookies[i].getValue();
+			System.out.println(autoLoging);
+		}
+	}
+}
+
+%>
 <section class="content">
 	<h2 class="skip">ABOUT</h2>
 	<div class="content_area about_area clearfix">
@@ -17,7 +30,7 @@
 					<ul class="clear">
 						<li class="id">
 							<label for="login_id" class="skip">회원아이디<strong class="sound_only"> 필수</strong></label>
-							<input type="text" name="mb_id" id="login_id" required="" class="input-text" size="20" maxlength="20" placeholder="아이디">
+							<input type="text" name="mb_id" id="login_id" value="<%=autoLoging %>" class="input-text" size="20" maxlength="20" placeholder="아이디">
 						</li>
 						<li class="pw">
 							<label for="login_pw" class="skip">비밀번호<strong class="sound_only"> 필수</strong></label>
@@ -27,7 +40,7 @@
 					<input type="submit" value="LOGIN" class="btn_login">
 				</div>
 				<div class="login_save">
-					<span class="chk_area"><input type="checkbox" name="auto_login" id="login_auto_login" checked="checked"> 계정정보저장</span>
+					<span class="chk_area"><input type="checkbox" name="auto_login" id="login_auto_login" <%if(autoLoging != "") {%>checked="checked"<%}%>> 계정정보저장</span>
 				</div>
 				<div class="login_btn_area btn_area_left">
 					<a href="${PATH}/MemberIntro.me" class="btn02">회원가입</a>
