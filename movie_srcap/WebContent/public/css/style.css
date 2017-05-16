@@ -371,7 +371,7 @@ html, body{width:100%;position:relative;z-index:1;}
 
 /* content */
 .content{padding-top:50px}
-.content_area img{width:100%}
+.content_area img{}
 
 	/* login_area */
 	.login_area.find_area{width:860px;margin:0 auto;}

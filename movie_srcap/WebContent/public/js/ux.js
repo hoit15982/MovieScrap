@@ -17,7 +17,7 @@ function setDatePicker(){
 	$( ".datepicker" ).datepicker({
 		dateFormat : 'yy-mm-dd',
 		showOn: "button",
-		buttonImage: "/movieScrap/public/images/common/icon_calendal.png",
+		buttonImage: "/movie_srcap/public/images/common/icon_calendal.png",
 		buttonImageOnly: true,
 		buttonText: "Select date",
 		changeMonth: true,
@@ -25,7 +25,8 @@ function setDatePicker(){
 		monthNamesShort : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ],
 		dayNamesShort: [ "일", "월", "화", "수", "목", "금", "토" ],
 		gotoCurrent : true,
-		showButtonPanel: true
+		showButtonPanel: true,
+		defaultDate: "-20y"
 	});
 }
 
