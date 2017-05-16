@@ -19,17 +19,17 @@
 function frmUpdateSubmit(frm){
 	var f = frm;
 	
-	if( f.mb_pass.value == '' ){
+	if( f.mb_pw.value == '' ){
 		alert("비밀번호를 입력하세요");
 		return false;
 	}
 	
-	if( f.mb_pass_re.value == '' ){
+	if( f.mb_pw_re.value == '' ){
 		alert("비밀번호를 재입력하세요.");
 		return false;
 	}
 	
-	if( f.mb_pass.value != f.mb_pass_re.value ){
+	if( f.mb_pw.value != f.mb_pw_re.value ){
 		alert("비밀번호가 동일하지 않습니다.");
 		return false;
 	}
@@ -54,8 +54,8 @@ function frmUpdateSubmit(frm){
 <section class="content">
 	<div class="content_area about_area clearfix">
 		<div class="section">
-			<h2 class="title01">회원가입</h2>
-			<form action="${PATH}/MemberJoinAction.me" method="post"
+			<h2 class="title01">회원정보 수정</h2>
+			<form action="${PATH}/MemberInfoUpdate.me" method="post"
 				onSubmit="return frmUpdateSubmit(this);" name="joinForm">
 				<input type="hidden" value="0" name="mb_id_chk" />
 				<table class="tbl_join">

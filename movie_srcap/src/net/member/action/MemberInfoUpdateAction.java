@@ -26,10 +26,11 @@ public class MemberInfoUpdateAction implements Action{
 		System.out.println(request.getParameter(member.toString()));
 		result = memberdao.MemberInfoUpdate(member);
 		if(result == false){
-			System.out.println("회원 가입 실패");
+			request.setAttribute("result", result);
+			System.out.println("회원 정보 수정 실패");
 			return null;
 		}
-		
+		request.setAttribute("result", result);
 		//회원가입 성공
 		forward.setRedirect(true);
 		//forward.setPath("./MemberLogin.me");

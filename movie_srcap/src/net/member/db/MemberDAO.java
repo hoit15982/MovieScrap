@@ -9,7 +9,10 @@ import java.util.Calendar;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.sql.DataSource;
+
+import com.oracle.jrockit.jfr.RequestableEvent;
 
 public class MemberDAO {
 	Connection con;
@@ -51,6 +54,29 @@ public class MemberDAO {
 		return false;
 	}
 	
+	public boolean MemberPwUpdate(MemberBean member){
+		String sql = "UPDATE MEMBER SET MB_PW = ?  WHERE MB_ID=?";
+		int result = 0;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMB_PW());
+			pstmt.setString(2, member.getMB_ID());
+			result = pstmt.executeUpdate();
+			
+			if(result!=0){
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("MemberPwReset Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+		return false;
+	}
+	
 	public boolean dupChk(String mb_id){
 		String sql = "select MB_ID from MEMBER where MB_ID=?";
 		boolean result = false;
@@ -68,7 +94,7 @@ public class MemberDAO {
 				result = true; //아이디가 존재 x
 			}
 		} catch (Exception e) {
-			System.out.println("isMember Error : "+e);
+			System.out.println("dupChk Error : "+e);
 		} finally {
 			if(rs!=null) try { rs.close();} catch(SQLException ex){}
 			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
@@ -79,7 +105,7 @@ public class MemberDAO {
 		
 	}
 	public boolean LoginChk(MemberBean member ){
-		String sql = "select MB_ID, MB_PW from MEMBER where MB_ID=?";
+		String sql = "select MB_ID, MB_PW,MB_NAME from MEMBER where MB_ID=?";
 		boolean result = false;
 		
 		try {
@@ -87,16 +113,19 @@ public class MemberDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member.getMB_ID());
 			rs = pstmt.executeQuery();
+			System.out.println(member.toString());
 			if(rs.next()){
 				if(rs.getString("MB_ID").equals(member.getMB_ID()) 
 						&& rs.getString("MB_PW").equals(member.getMB_PW())){
+					member.setMB_NAME(rs.getString("MB_NAME"));
 					result = true; //아이디 비밀번호 일치
 				}
 			} else {
+				System.out.println(member.toString());
 				result = false; //아이디와 비밀번호가 일치 하지 않음
 			}
 		} catch (Exception e) {
-			System.out.println("isMember Error : "+e);
+			System.out.println("LoginChk Error : "+e);
 		} finally {
 			if(rs!=null) try { rs.close();} catch(SQLException ex){}
 			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
@@ -173,10 +202,52 @@ public class MemberDAO {
 		return result;
 	}
 	
+	public boolean findMyPw(MemberBean member){
+		String sql = "select MB_ID, MB_PH from MEMBER where MB_ID = ? and MB_PH = ? ";
+		boolean result = false;
+		System.out.println("DAO 진입");
+		try {
+			con = ds.getConnection();
+			
+			System.out.println(member.toString());
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMB_ID());
+			pstmt.setString(2, member.getMB_PH());
+			rs = pstmt.executeQuery();
+			
+			
+			
+			if(rs.next() ){
+				if(rs.getString("MB_ID").equals(member.getMB_ID()) && 
+						rs.getString("MB_PH").equals(member.getMB_PH())){
+
+					result = true;//패스워드 수정 허가
+				} else {
+					System.out.println("회원정보 일치 안함");
+					result = false;//회원정보 일치 하지 않음
+				}
+			} else {
+				System.out.println("검색결과 없음");
+				result = false;//DB에서 찾을 수 없었음
+			}
+		} catch (Exception e) {
+			
+			System.out.println("findMyPw Error : "+e);
+		} finally {
+			if(rs!=null) try { rs.close();} catch(SQLException ex){}
+			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
+			if(con!=null) try { con.close();} catch(SQLException ex){}
+		}
+
+		return result;
+	}
+	
 	public MemberBean memberUpdate(MemberBean member){
 		String sql = "select MB_ID, MB_PW, MB_NAME, MB_BIRTH, MB_GENDER, "
 				+ "MB_PH, MB_EMAIL FROM MEMBER WHERE MB_ID = ? and MB_PW = ?";
 		System.out.println("DAO 진입");
+		String msg="아이디가 잘못 입력 되었어요";
 		try {
 
 			System.out.println(member.toString());
@@ -201,10 +272,12 @@ public class MemberDAO {
 					//아이디 찾기 완료
 				} else {
 					System.out.println("아이디 비밀번호 일치하지 않음");
+					System.out.println(member.toString());
 					return null;//아이디 비밀번호가 일치 하지 않음
 				}
 			} else {
 				System.out.println("정보 조회 이상");
+				System.out.println(member.toString());
 				return null;//정보 조회 이상
 			}
 		} catch (Exception e) {
@@ -215,7 +288,6 @@ public class MemberDAO {
 			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
 			if(con!=null) try { con.close();} catch(SQLException ex){}
 		}
-
 		return member;
 	}
 	
@@ -238,7 +310,7 @@ public class MemberDAO {
 				result = -1; //아이디가 존재 x
 			}
 		} catch (Exception e) {
-			System.out.println("isMember Error : "+e);
+			System.out.println("myPageAuth Error : "+e);
 		} finally {
 			if(rs!=null) try { rs.close();} catch(SQLException ex){}
 			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
