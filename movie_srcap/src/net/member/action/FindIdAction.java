@@ -24,7 +24,7 @@ public class FindIdAction implements Action{
 		result = memberdao.findMyId(member);
 		
 		String[] msg;
-		msg = new String[1];
+		msg = new String[2];
 		
 		if(result.equals("")){
 			msg[0] = "이런..! 고객님의 아이디를 찾지 못했어요 :(";
@@ -34,7 +34,7 @@ public class FindIdAction implements Action{
 			msg[1] = "회원님의 아이디는 "+result+" 입니다.";
 		}
 		System.out.println("msg::::::::"+msg[0]+msg[1]);
-		request.setAttribute("msg", msg);
+		request.setAttribute("msgId", msg);
 		
 		return forward;
 	}

@@ -7,6 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.taglibs.standard.lang.jstl.BooleanLiteral;
+
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class MemberFrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	static final long serialVersionUID = 1L;
 
@@ -90,7 +94,7 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet implem
 			System.out.println(forward);
 
 		}
-		// 아이디 찾기 종료
+		// 아이디 찾기
 		else if (command.equals("/findIdFin.me")) {
 			action = new FindIdAction();
 			forward = new ActionForward();
@@ -103,6 +107,38 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet implem
 			forward.setRedirect(false);
 			forward.setPath("./member/findIdFin.jsp");
 		}
+		// 패스워드 재설정
+		else if (command.equals("/passwordReset.me")) {
+			action = new PwResetAction();
+			forward = new ActionForward();
+
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			forward.setRedirect(false);
+			forward.setPath("./member/loginForm.jsp");
+		}
+		// 패스워드 찾기
+		else if (command.equals("/findPwFin.me")) {
+			action = new FindPwAction();
+			forward = new ActionForward();
+
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println(request.getAttribute("result").toString());
+			if ((boolean) request.getAttribute("result") == false) {
+				forward.setRedirect(false);
+				forward.setPath("./member/findIdPw.jsp");
+			} else if ((boolean) request.getAttribute("result") == true) {
+				forward.setRedirect(false);
+				forward.setPath("./member/findPwFin.jsp");
+			}
+		}
 		// 로그인 액션
 		else if (command.equals("/login.me")) {
 			action = new LoginAction();
@@ -113,12 +149,17 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet implem
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			forward.setRedirect(false);
-			forward.setPath("./main/main.jsp");
+			if ((boolean) request.getAttribute("result") == false) {
+				forward.setRedirect(false);
+				forward.setPath("./member/loginForm.jsp");
+			} else {
+				forward.setRedirect(false);
+				forward.setPath("./main/main.jsp");
+			}
 		}
-		// 회원 정보 조회
-		else if (command.equals("/memberInfo.me")) {
-			action = new MemberInfoAction();
+		// 패스워드 리셋
+		else if (command.equals("/passwordReset.me")) {
+			action = new LoginAction();
 			forward = new ActionForward();
 
 			try {
@@ -126,9 +167,52 @@ public class MemberFrontController extends javax.servlet.http.HttpServlet implem
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			forward.setRedirect(false);
-			forward.setPath("./member/memberInfo.jsp");
+			if ((boolean) request.getAttribute("result") == false) {
+				forward.setRedirect(false);
+				forward.setPath("./member/errorSorry.jsp");
+			} else {
+				forward.setRedirect(false);
+				forward.setPath("./main/main.jsp");
+			}
 		}
+		// 회원 정보 조회
+				else if (command.equals("/memberInfo.me")) {
+					action = new MemberInfoAction();
+					forward = new ActionForward();
+
+					try {
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					if ((boolean) request.getAttribute("result") == false) {
+
+						forward.setRedirect(false);
+						forward.setPath("./member/memberCheckPass.jsp");
+					} else if ((boolean) request.getAttribute("result") == true) {
+						forward.setRedirect(false);
+						forward.setPath("./member/memberInfo.jsp");
+					}
+				}
+		// 회원 정보 수정
+				else if (command.equals("/MemberInfoUpdate.me")) {
+					action = new MemberInfoUpdateAction();
+					forward = new ActionForward();
+
+					try {
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					if ((boolean) request.getAttribute("result") == false) {
+
+						forward.setRedirect(false);
+						forward.setPath("./member/memberInfo.jsp");
+					} else if ((boolean) request.getAttribute("result") == true) {
+						forward.setRedirect(false);
+						forward.setPath("./main/main.jsp");
+					}
+				}
 		// 로그아웃
 		if (command.equals("/logout.me")) {
 			action = new LogoutAction();

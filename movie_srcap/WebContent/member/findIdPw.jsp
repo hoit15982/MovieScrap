@@ -36,7 +36,7 @@
 				<!-- //아이디찾기 -->
 				<!-- 비밀번호찾기 -->
 				<div class="login_inner find_inner">
-				<form action="" method="post" name="findPwFrm">
+				<form action="${PATH}/findPwFin.me" method="post" name="findPwFrm">
 				<fieldset>
 					<input type="hidden" name="encPw" />
 					<h3>비밀번호찾기</h3>
@@ -44,14 +44,14 @@
 						<ul class="clear">
 							<li class="id">
 								<label for="login_id" class="skip">ID<strong class="sound_only"> 필수</strong></label>
-								<input type="text" name="mb_id" id="login_id" required="" class="input-text" size="20" maxlength="20" placeholder="ID">
+								<input type="text" name="mb_id" id="mb_id" required="" class="input-text" size="20" maxlength="20" placeholder="ID">
 							</li>
 							<li class="pw">
 								<label for="login_pw" class="skip">전화번호<strong class="sound_only"> 필수</strong></label>
-								<input type="text" name="mb_phone" id="mb_phone" required="" class="input-text" size="20" maxlength="20" placeholder="전화번호">
+								<input type="text" name="mb_ph" id="mb_ph" required="" class="input-text" size="20" maxlength="20" placeholder="전화번호">
 							</li>
 						</ul>
-						<input type="submit" value="SEARCH" class="btn_login">
+						<input type="submit" value="SEARCH" id = "findPw"class="btn_login">
 					</div>
 				</fieldset>
 				</form>
