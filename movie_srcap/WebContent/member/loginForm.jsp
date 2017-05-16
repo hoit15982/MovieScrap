@@ -9,7 +9,7 @@
 		<div class="login_area">
 			<div class="login_inner">
 			<h2 class="login_logo">MOVIE SCRAP LOGIN</h2>
-			<form action="" method="post" name="loginFrm">
+			<form action="${PATH }/login.me" method="post" name="loginFrm">
 			<fieldset>
 				<input type="hidden" name="encPw" />
 				<h3>LOGIN</h3>
@@ -21,7 +21,7 @@
 						</li>
 						<li class="pw">
 							<label for="login_pw" class="skip">비밀번호<strong class="sound_only"> 필수</strong></label>
-							<input type="password" name="mb_pass" id="login_pw" required="" class="input-text" size="20" maxlength="20" placeholder="비밀번호">
+							<input type="password" name="mb_pw" id="login_pw" required="" class="input-text" size="20" maxlength="20" placeholder="비밀번호">
 						</li>
 					</ul>
 					<input type="submit" value="LOGIN" class="btn_login">
@@ -30,8 +30,8 @@
 					<span class="chk_area"><label><input type="checkbox" name="auto_login" id="login_auto_login"></label> 계정정보저장</span>
 				</div>
 				<div class="login_btn_area btn_area_left">
-					<a href="${PATH }/member/joinIntro.jsp" class="btn02">회원가입</a>
-					<a href="${PATH }/member/findIdPw.jsp" class="btn02">아이디/비밀번호 찾기</a>
+					<a href="${PATH}/MemberIntro.me" class="btn02">회원가입</a>
+					<a href="${PATH}/findIdPw.me" class="btn02">아이디/비밀번호 찾기</a>
 				</div>
 			</fieldset>
 			</form>
