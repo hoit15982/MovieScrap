@@ -11,7 +11,7 @@
 				<div class="login_inner">
 				<h2 class="login_logo">MYPAGE 비밀번호 확인</h2>
 				<form action="${PATH }/memberInfo.me" method="post">
-					<input type="hidden" name="mb_id" value="${id }" />
+					<input type="hidden" name="id" value="${id }" />
 					<fieldset>
 						<h3>MYPAGE</h3>
 						<div class="login_input clearfix">

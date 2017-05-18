@@ -16,7 +16,7 @@ public class CommentReplyAction implements Action
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		// ÆÄ¶ó¹ÌÅÍ¸¦ °¡Á®¿Â´Ù.
+		// ï¿½Ä¶ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
 		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
 		int comment_board = Integer.parseInt(request.getParameter("comment_board"));
 		String comment_id = request.getParameter("comment_id");
@@ -25,18 +25,17 @@ public class CommentReplyAction implements Action
 		CommentDAO dao = CommentDAO.getInstance();
 		
 		CommentBean comment = new CommentBean();	
-		comment.setComment_num(dao.getSeq());	// ½ÃÄö½º¸¦ °¡Á®¿Í ¼¼ÆÃÇÑ´Ù
+		comment.setComment_num(dao.getSeq());	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 		comment.setComment_board(comment_board);
 		comment.setComment_id(comment_id);
 		comment.setComment_content(comment_content);
-		comment.setComment_parent(comment_num);  // ºÎ¸ð´ñ±ÛÀÇ ±Û¹øÈ£¸¦ ¼¼ÆÃ
+		comment.setComment_parent(comment_num); 
 		
 		boolean result = dao.insertComment(comment);
 		
-		response.setContentType("text/html;charset=euc-kr");
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		// Á¤»óÀûÀ¸·Î ´ñ±ÛÀ» ÀúÀåÇßÀ»°æ¿ì 1À» Àü´ÞÇÑ´Ù.
 		if(result) out.println("1");
 		else out.println("0");
 		

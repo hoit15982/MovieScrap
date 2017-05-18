@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
 <c:import url="../layout/header.jsp"></c:import>
 <%
 	// 줄바꿈 
@@ -140,122 +139,43 @@
 			<h2 class="title01">토론방</h2>
 			<div class="board_view_area">
 				<form method="post" name="frm">
-					<h3 class="board_view_title">${board.board_subject}</h3>
-					
-					<!-- 게시판 정보 -->
+					<h3 class="board_view_title">제목제목제목1</h3>
+					<!-- 게시판정보 -->
 					<div class="board_view_top">
-						<span class="info">- Date : ${board.board_date} </span>
-						<span class="info">- Writer : ${board.board_id}</span>
-						<span class="info">- Hit : ${board.board_count}</span>
-						
+						<span class="info">- Date : 2013-11-23 </span>
+						<span class="info">- Writer : 김남형</span>
+						<span class="info">- Hit : 3</span>
 					</div>
-
+					<!-- //게시판정보 -->
 					<!-- 첨부파일 -->
 					<div class="board_view_file">
 						<h3 class="tit">첨부파일</h3>
 						<ul class="clear">
-							<li><a href='FileDownloadAction.bo?file_name=${board.board_file}'>${board.board_file}</a></li>
+							<li><a href="">첨부파일1111</a></li>
 						</ul>
 					</div>
-
+					<!-- //첨부파일 -->
 					<!-- board_write -->
 					<div class="board_view">
-						<div class="view_content">${fn:replace(board.board_content, cn, br)}</div>
+						<div class="view_content">내용내용</div>
 					</div>
-
-					<!-- board_write bottom -->
+					<!-- //board_write -->
+					<!-- board_write_bottom -->
 					<div class="clearfix board_view_bottom">
 						<div class="button_area_left">
-							
-							<c:if test="${sessionScope.sessionID !=null}">								
-								<%-- <c:if test="${id == board.board_id}"> --%>
-									<input type="button" value="수정" onclick="doAction(0)" class="btn01">
-									<input type="button" value="삭제" onclick="doAction(1)" class="btn01">
-									<!-- <input type="button" value="답글" onclick="changeView(1)" class="btn01"> -->
-								<%-- </c:if> --%>
-							</c:if>
-						</div>						
-						<div class="button_area_right">
-							<a href="${PATH }/BoardListAction.bo" class="btn01">목록</a>
+							<a href="" class="btn02">수정</a>
+							<a href="" class="btn02">답변</a>
 						</div>
-						<!-- javascript:location.href='BoardListAction.bo?page=${pageNum}' -->
+						<div class="button_area_right">
+							<a href="" class="btn01">목록</a>
+						</div>
 					</div>
+					<!-- //board_write_bottom -->
 				</form>
 			</div>
 		</div>
 	</div>
-	<br> <br> <br> <br> <br> <br> <br> <br>
-	<br> <br>
-	<!-- 댓글 부분 -->
-	<div id="comment">
-		<table border="1" bordercolor="lightgray">
-			<!-- 댓글 목록 -->
-			<c:if test="${requestScope.commentList != null}">
-				<c:forEach var="comment" items="${requestScope.commentList}">
-					<tr>
-						<!-- 아이디, 작성날짜 -->
-						<td width="150">
-							<div>
-								<c:if test="${comment.comment_level > 1}">
-							&nbsp;&nbsp;&nbsp;&nbsp; <!-- 답변글일경우 아이디 앞에 공백을 준다. -->
-									<img src="img/reply_icon.gif">
-								</c:if>
-
-								${comment.comment_id}<br> <font size="2" color="lightgray">${comment.comment_date}</font>
-							</div>
-						</td>
-						<!-- 본문내용 -->
-						<td width="550">
-							<div class="text_wrapper">
-								${fn:replace(comment.comment_content, cn, br)}</div>
-						</td>
-						<!-- 버튼 -->
-						<td width="100">
-							<div id="btn">
-								<a href="#" onclick="cmReplyOpen(${comment.comment_num})">[답변]</a><br>
-								<!-- 댓글 작성자만 수정, 삭제 가능하도록 -->
-								<c:if test="${comment.comment_id == sessionScope.sessionID}">
-									<a href="#" onclick="cmUpdateOpen(${comment.comment_num})">[수정]</a>
-									<br>
-									<a href="#" onclick="cmDeleteOpen(${comment.comment_num})">[삭제]</a>
-								</c:if>
-							</div>
-						</td>
-					</tr>
-
-				</c:forEach>
-			</c:if>
-
-			<!-- 로그인 했을 경우만 댓글 작성가능 -->
-			<c:if test="${id !=null}">
-				<tr bgcolor="#F5F5F5">
-					<form id="writeCommentForm">
-						<input type="hidden" name="comment_board"
-							value="${board.board_num}"> <input type="hidden"
-							name="comment_id" value="${sessionScope.sessionID}">
-						<!-- 아이디-->
-						<td width="150">
-							<div>${sessionScope.sessionID}</div>
-						</td>
-						<!-- 본문 작성-->
-						<td width="550">
-							<div>
-								<textarea name="comment_content" rows="4" cols="70"></textarea>
-							</div>
-						</td>
-						<!-- 댓글 등록 버튼 -->
-						<td width="100">
-							<div id="btn">
-								<p>
-									<a href="#" onclick="writeCmt()">[댓글등록]</a>
-								</p>
-							</div>
-						</td>
-					</form>
-				</tr>
-			</c:if>
-		</table>
-	</div>
 </section>
-</body>
-</html>
+<!-- //content -->
+
+<c:import url="../layout/footer.jsp"></c:import>
