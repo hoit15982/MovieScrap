@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="../layout/header.jsp"></c:import>
+<form action="member_list.jsp" method="post">
+<div class="login_area">
+	<h2 class="login_title"><span class="icon_login"></span>Dashboard Login</h2>
+	<div class="login_list">
+		<ul class="clear">
+			<li class="icon_id"><span>ID</span><input type="text" placeholder="id" name="mb_id"></li>
+			<li class="icon_pw"><span>PW</span><input type="password" placeholder="password" name="mb_pass"></li>
+		</ul>
+		<div class="login_btn">
+			<input type="submit" class="btn_login" value="LOGIN">
+		</div>
+		<div class="login_bottom">
+			<a href="${PATH}/main/main.jsp">메인으로</a>
+		</div>
+	</div>
+</div>
+</form>
+<c:import url="../layout/footer.jsp"></c:import>
