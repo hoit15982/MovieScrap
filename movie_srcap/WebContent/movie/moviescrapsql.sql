@@ -17,7 +17,7 @@ select * from MovieScrap;
 select * from MovieScrap where mb_id='namhy' and ms_seq='35443' and ms_id='F';
 select * from (select rownum rnum, ms_no, mb_id, ms_title, ms_director,ms_poster, ms_regdate, ms_rating, ms_seq, ms_id from (select * from Moviescrap)) where rnum>=1 and rnum<=5 and mb_id='namhy';
 
-select * from MEMBER;
+select * from seq;
 
 select * from MovieReview;
 select count(*) from MovieReview where mb_id='namhy' and ms_seq=35443 and ms_id='F';
