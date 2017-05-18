@@ -24,6 +24,7 @@ public class MovieScrapListAction implements MAction {
 	public MActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		
+		
 		request.setCharacterEncoding("utf-8");
 		String stx = request.getParameter("stx");
 		MActionForward mforward = new MActionForward();

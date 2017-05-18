@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -233,6 +234,75 @@ public class MovieDAO {
 		return false;
 	}
 	
+	//스크랩 갯수 확인(로그인한 사람아이디값으로 체크)
+	public int getScrapCount(String mb_id){
+		int x = 0;
+		try {
+			connection();
+			con = ds.getConnection();
+			pstmt = con.prepareStatement("select count(*) from MovieScrap where mb_id=?");
+			pstmt.setString(1, mb_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) x = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println("getScrapList Error : "+e);
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e2) {
+			}
+		}
+		return x;
+	}
+	
+	
+	//스크랩한 리스트 보기
+	public List getScrapList(int page, int limit, String mb_id){
+		String sql = "";
+		sql = "select * from (select rownum rnum, ms_no, mb_id, ms_title, ms_director, "
+				+ "ms_poster, ms_regdate, ms_rating, ms_seq, ms_id from (select * from "
+				+ "moviescrap)) where rnum>=? and rnum<=? and mb_id=?";
+		
+		List list = new ArrayList();
+		int startrow = (page -1)*10+1;
+		int endrow = startrow+limit-1;
+		
+		try {
+			connection();
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, endrow);
+			pstmt.setString(3, mb_id);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()){
+				MovieBean movie = new MovieBean();
+				movie.setMs_no(rs.getInt("ms_no"));
+				movie.setMb_id(rs.getString("mb_id"));
+				movie.setMs_title(rs.getString("ms_title"));
+				movie.setMs_director(rs.getString("ms_director"));
+				movie.setMs_poster(rs.getString("ms_poster"));
+				movie.setMs_rating(rs.getString("ms_rating"));
+				movie.setMs_seq(rs.getString("ms_seq"));
+				movie.setMs_id(rs.getString("ms_id"));
+				movie.setMs_regdate(rs.getDate("ms_regdate"));
+				
+				list.add(movie);
+			}
+			return list;
+		} catch (Exception e) {
+			System.out.println("getScrapList Error : "+e);
+		} finally {
+			if(rs!=null) try{rs.close();} catch(SQLException e){}
+			if(pstmt!=null) try{pstmt.close();} catch(SQLException e){}
+			if(con!=null) try{con.close();} catch(SQLException e){}
+		}
+		return null;
+	}
 	
 	
 	//영화 API 파싱 리스트 

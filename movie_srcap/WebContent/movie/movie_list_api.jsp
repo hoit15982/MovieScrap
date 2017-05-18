@@ -17,6 +17,7 @@
 			<input type="text" name="stx" id="stx" value="" size="40" />
 			<input type="submit"  class="btn01" value="영화검색" />
 			</form>
+			<a href="MovieMyList.mv" class="btn01">MY LIST</a>
 			
 			<!-- 오름차순, 내림차순 -->
 			<div class="sort_list" id="orderby">

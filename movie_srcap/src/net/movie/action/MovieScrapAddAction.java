@@ -38,11 +38,16 @@ public class MovieScrapAddAction implements MAction{
 			ArrayList<Movie> movieList = mDao.getMovieList(mApi.getResult());
 			Movie movie = movieList.get(0);
 			request.setAttribute("movie", movie);
-
-			moviedata.setMb_id("namhy");
 			
-			StringTokenizer st = new StringTokenizer(movie.getPoster(),"%|");
-			String poster = st.nextToken();
+			moviedata.setMb_id("namhy");
+			String poster = "";
+			if(movie.getPoster() != null){
+				StringTokenizer st = new StringTokenizer(movie.getPoster(),"%|");
+				poster = st.nextToken();
+			} else {
+				poster = "";
+			}
+			
 			
 			
 			moviedata.setMs_title(movie.getTitle());
@@ -59,12 +64,22 @@ public class MovieScrapAddAction implements MAction{
 			if(result == false){
 				System.out.println("스크랩 실패 !!");
 				return null;
-			} 
+			}else{
 			
-			System.out.println("스크랩 성공!!!");
+		
+				request.setAttribute("msg", "스크랩 성공");
+				System.out.println("스크랩 성공!!!");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('스크랩성공');");
+				out.println("history.go(-1);");
+				out.println("</script>");
 			
-			forward.setRedirect(true);
-			forward.setPath("./MovieScrapView.mv?id="+id+"&seq="+seq);
+			}
+			
+			forward.setRedirect(false);
+			forward.setPath("/main/main.jsp");
+			
 			return forward;
 		} catch (Exception e) {
 			e.printStackTrace();
