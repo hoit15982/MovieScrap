@@ -74,7 +74,7 @@ function onSuccess(data) {
 		
 	for( var i = 0; i< filteredItems.length; i++) {
 		
-		output+="<tr></tr>"+"<tr><td><li>"+filteredItems[i].title+"</li></td><td>"+filteredItems[i].roadAddress+"</td></tr>";
+		output+="<tr></tr>"+"<tr><td><li class='MapList'>"+filteredItems[i].title+"</li></td><td>"+filteredItems[i].roadAddress+"</td></tr>";
 
 		var items_title = filteredItems[i].title;
 		
@@ -95,9 +95,9 @@ function onSuccess(data) {
     oMap.setCenter(arrMarker[0].getPoint());
     
      
-	$("li").mouseover(function() {
+	$(".MapList").mouseover(function() {
 		
-		var index = $("li").index(this);
+		var index = $(".MapList").index(this);
 		console.log(index);
 		console.log(arrMarker[index].getTitle());
 		
@@ -114,7 +114,7 @@ function onSuccess(data) {
 		
 	});
     
-    $("li").mouseout(function() {
+    $(".MapList").mouseout(function() {
     	mapInfoTestWindow.setVisible(false);
     });
 
