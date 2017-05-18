@@ -48,7 +48,7 @@ int dupChkFlag = 0;
 	}
 	
 	function frmJoinSubmit(joinForm){
-		var f = document.joinForm;
+		var f = joinForm;
 		
 		if( f.mb_name.value == '' ){
 			alert("이름을 입력하세요");
@@ -101,10 +101,10 @@ int dupChkFlag = 0;
 			}).done(function(data){
 				if(data.trim() == "false"){
 					alert("["+f.mb_id.value +"] 이미 사용하고 있는 아이디입니다.");
-					id_chk.value = '0';
+					f.mb_id_chk.value = '0';
 				}else{
 					alert("사용할수 있는 아이디입니다.");
-					id_chk.value = '1';
+					f.mb_id_chk.value = '1';
 				}
 			});	
 		}else{
