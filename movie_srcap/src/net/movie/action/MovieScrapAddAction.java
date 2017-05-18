@@ -65,22 +65,17 @@ public class MovieScrapAddAction implements MAction{
 				System.out.println("스크랩 실패 !!");
 				return null;
 			}else{
-			
-		
 				request.setAttribute("msg", "스크랩 성공");
 				System.out.println("스크랩 성공!!!");
+				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('스크랩성공');");
 				out.println("history.go(-1);");
 				out.println("</script>");
-			
 			}
-			
-			forward.setRedirect(false);
-			forward.setPath("/main/main.jsp");
-			
-			return forward;
+
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
