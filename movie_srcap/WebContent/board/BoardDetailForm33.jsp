@@ -165,12 +165,12 @@
 					<!-- board_write bottom -->
 					<div class="clearfix board_view_bottom">
 						<div class="button_area_left">
-							<%-- <c:if test="${sessionScope.sessionID !=null}">	 --%>							
+							
 							<c:if test="${id !=null}">								
 								<%-- <c:if test="${id == board.board_id}"> --%>
 									<input type="button" value="수정" onclick="doAction(0)" class="btn01">
 									<input type="button" value="삭제" onclick="doAction(1)" class="btn01">
-									<!-- <input type="button" value="답글" onclick="changeView(1)" class="btn01"> -->
+									<input type="button" value="답글" onclick="changeView(1)" class="btn01">
 								<%-- </c:if> --%>
 							</c:if>
 						</div>						
@@ -183,6 +183,7 @@
 			</div>
 		</div>
 	</div>
+	<br> <br> <br> <br> <br> <br> <br> <br>
 	<br> <br>
 	<!-- 댓글 부분 -->
 	<div id="comment">
@@ -211,7 +212,7 @@
 						<td width="100">
 							<div id="btn">
 								<a href="#" onclick="cmReplyOpen(${comment.comment_num})">[답변]</a><br>
-								<!-- 댓글 작성자만 수정,삭제 가능하도록 -->
+								<!-- 댓글 작성자만 수정, 삭제 가능하도록 -->
 								<c:if test="${comment.comment_id == sessionScope.sessionID}">
 									<a href="#" onclick="cmUpdateOpen(${comment.comment_num})">[수정]</a>
 									<br>
@@ -225,7 +226,7 @@
 			</c:if>
 
 			<!-- 로그인 했을 경우만 댓글 작성가능 -->
-			<c:if test="${id !=null}">
+			<c:if test="${sessionScope.sessionID !=null}">
 				<tr bgcolor="#F5F5F5">
 					<form id="writeCommentForm">
 						<input type="hidden" name="comment_board"
@@ -254,5 +255,6 @@
 			</c:if>
 		</table>
 	</div>
-		<br><br><br><br><br>
 </section>
+</body>
+</html>

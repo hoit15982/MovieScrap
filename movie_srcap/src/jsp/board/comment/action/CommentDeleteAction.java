@@ -20,10 +20,9 @@ public class CommentDeleteAction implements Action
 		CommentDAO dao = CommentDAO.getInstance();
 		boolean result = dao.deleteComment(comment_num);
 		
-		response.setContentType("text/html;charset=euc-kr");
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
-		// 정상적으로 댓글을 삭제했을경우 1을 전달한다.
 		if(result) out.println("1");
 		
 		out.close();

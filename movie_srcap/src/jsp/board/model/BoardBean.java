@@ -4,17 +4,17 @@ import java.sql.Date;
 
 public class BoardBean 
 {
-	private int board_num;  		// ±Û¹øÈ£
-	private String board_id; 		// ±Û ÀÛ¼ºÀÚ
-	private String board_subject; 	// ±Û Á¦¸ñ
-	private String board_content; 	// ±Û ³»¿ë
-	private String board_file; 		// Ã·ºÎÆÄÀÏ ÀÌ¸§
-	private int board_re_ref; 		// ±Û ±×·ì¹øÈ£
-	private int board_re_lev; 		// ´äº¯±Û ±íÀÌ
-	private int board_re_seq; 		// ´äº¯±Û ¼ø¼­
-	private int board_count; 		// ±Û Á¶È¸¼ö
-	private Date board_date; 		// ±Û ÀÛ¼ºÀÏ
-	private int board_parent; 		// ºÎ¸ð±Û ¹øÈ£
+	private int board_num;  		// ï¿½Û¹ï¿½È£
+	private String board_id; 		// ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½
+	private String board_subject; 	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String board_content; 	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String board_file; 		// Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	private int board_re_ref; 		// ï¿½ï¿½ ï¿½×·ï¿½ï¿½È£
+	private int board_re_lev; 		// ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private int board_re_seq; 		// ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private int board_count; 		// ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½
+	private Date board_date; 		// ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½
+	private int board_parent; 		// ï¿½Î¸ï¿½ï¿½ ï¿½ï¿½È£
 	
 	public int getBoard_num() {
 		return board_num;
@@ -82,4 +82,13 @@ public class BoardBean
 	public void setBoard_parent(int board_parent) {
 		this.board_parent = board_parent;
 	}
+	@Override
+	public String toString() {
+		return "BoardBean [board_num=" + board_num + ", board_id=" + board_id + ", board_subject=" + board_subject
+				+ ", board_content=" + board_content + ", board_file=" + board_file + ", board_re_ref=" + board_re_ref
+				+ ", board_re_lev=" + board_re_lev + ", board_re_seq=" + board_re_seq + ", board_count=" + board_count
+				+ ", board_date=" + board_date + ", board_parent=" + board_parent + "]";
+	}
+	
+	
 }

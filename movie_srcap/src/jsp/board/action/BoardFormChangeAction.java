@@ -12,26 +12,28 @@ import jsp.common.action.ActionForward;
  */
 public class BoardFormChangeAction implements Action
 {
-	
+	private String form = "MainForm.jsp?contentPage=board/";
 	private String path;
 	
-
+	/**
+	 * ��ɾ�κ��� ���� �̵��� ������ ��θ� �����Ѵ�.
+	 * @param command ��ɾ�
+	 */
 	public void setCommand(String command){
 		int idx = command.indexOf(".");
-		System.out.println(command);
 		path = command.substring(0, idx)+".jsp";
-		
-		System.out.println(path);
 	}
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = new ActionForward();
 		
 		forward.setRedirect(false);
+		
 		forward.setNextPath("/board/"+path);
-	
+		
 		return forward;
 	}
 }

@@ -12,22 +12,24 @@
 				<div class="clearfix board_list_top">
 					
 					<!-- search_area -->
-					<form action="list.do" name="fboardSearch" method="get">
-					<input type="hidden" name="bo_table" value="" />
-					<div class="search_area">
-						<select name="" id="" class="input-select" style="width:100px">
-							<option value="">제목</option>
-							<option value="">내용</option>
-							<option value="">작성자</option>
-						</select>
-						<input type="text" size="20" name="stx" value="" placeholder="Search" />
-						<input type="submit"class="btn01" value="Search" />
+					<div class="search_area" id="searchForm">
+						<!-- <form action="BoardListForm.bo" name="fboardSearch" method="get"> -->
+						<form>
+							<input type="hidden" name="bo_table" value="" />
+							<div>
+								<select name="opt" class="input-select" style="width: 100px">
+									<option value="0">제목</option>
+									<option value="1">내용</option>
+									<option value="2">작성자</option>
+								</select>
+								<input type="text" size="20" name="condition" value="" placeholder="Search" />
+								<input type="submit" class="btn01" value="Search" />
+							</div>
+						</form>
+						<!-- //search_area -->
 					</div>
-					</form>
-					<!-- //search_area -->
-					
-				</div>
-				<!-- 정렬 -->
+
+					<!-- 정렬 -->
 				<div class="sort_list">
 					<a href="" class="btn02 on">최신글</a>
 					<a href="" class="btn02">조회수</a>

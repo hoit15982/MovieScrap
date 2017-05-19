@@ -15,8 +15,9 @@ public class BoardUpdateFormAction implements Action
 			HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = new ActionForward();
-		
-		// ÆäÀÌÁö ¹øÈ£¿Í ±Û ¹øÈ£¸¦ °¡Á®¿Â´Ù.
+		System.out.println("ddddd");
+
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
 		String pageNum = request.getParameter("page");
 		String num = request.getParameter("num");
 		int boardNum = Integer.parseInt(num);
@@ -27,7 +28,7 @@ public class BoardUpdateFormAction implements Action
 		request.setAttribute("board", board);
 		request.setAttribute("pageNum", pageNum);
 		
-		forward.setRedirect(false); // ´Ü¼øÇÑ Á¶È¸ÀÌ¹Ç·Î
+		forward.setRedirect(false); // ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ì¹Ç·ï¿½
 		forward.setNextPath("BoardUpdateForm.bo");
 		
 		return forward;

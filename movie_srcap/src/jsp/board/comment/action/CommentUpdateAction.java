@@ -16,7 +16,7 @@ public class CommentUpdateAction implements Action
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		// ÆÄ¶ó¹ÌÅÍ¸¦ °¡Á®¿Â´Ù.
+		// ï¿½Ä¶ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
 		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
 		String comment_content = request.getParameter("comment_content");
 		
@@ -28,10 +28,9 @@ public class CommentUpdateAction implements Action
 		
 		boolean result = dao.updateComment(comment);
 		
-		response.setContentType("text/html;charset=euc-kr");
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		// Á¤»óÀûÀ¸·Î ´ñ±ÛÀ» ¼öÁ¤ÇßÀ»°æ¿ì 1À» Àü´ÞÇÑ´Ù.
 		if(result) out.println("1");
 		
 		out.close();
