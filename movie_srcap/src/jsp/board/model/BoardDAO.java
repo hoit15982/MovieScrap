@@ -95,7 +95,7 @@ public class BoardDAO
 			int flag = pstmt.executeUpdate();
 			if(flag > 0){
 				result = true;
-				conn.commit(); // �Ϸ�� Ŀ��
+				conn.commit(); 
 			}
 			
 		} catch (Exception e) {
@@ -183,7 +183,7 @@ public class BoardDAO
                 
                 sql.delete(0, sql.toString().length());
             }
-            else if(opt.equals("2")) // 글쓴이로 검색
+            else if(opt.equals("3")) // 글쓴이로 검색
             {
                 sql.append("select * from ");
                 sql.append("(select rownum rnum, BOARD_NUM, BOARD_ID, BOARD_SUBJECT");
@@ -201,6 +201,7 @@ public class BoardDAO
                 
                 sql.delete(0, sql.toString().length());
             }
+            
             
             rs = pstmt.executeQuery();
             while(rs.next())
@@ -336,7 +337,6 @@ public class BoardDAO
 		try {
 			conn = ds.getConnection();
 			
-			// �ڵ� Ŀ���� false�� �Ѵ�.
 			conn.setAutoCommit(false);
 			
 			StringBuffer sql = new StringBuffer();
@@ -411,12 +411,12 @@ public class BoardDAO
 			int flag = pstmt.executeUpdate();
 			if(flag > 0){
 				result = true;
-				conn.commit(); // �Ϸ�� Ŀ��
+				conn.commit(); 
 			}	
 			
 		} catch (Exception e) {
 			try {
-				conn.rollback(); // ������ �ѹ�
+				conn.rollback(); 
 			} catch (SQLException sqle) {
 				sqle.printStackTrace();
 			}
@@ -433,7 +433,7 @@ public class BoardDAO
 		
 		try{
 			conn = ds.getConnection();
-			conn.setAutoCommit(false); // �ڵ� Ŀ���� false�� �Ѵ�.
+			conn.setAutoCommit(false); 
 			
 			StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE MEMBER_BOARD SET");
@@ -452,12 +452,12 @@ public class BoardDAO
 			int flag = pstmt.executeUpdate();
 			if(flag > 0){
 				result = true;
-				conn.commit(); // �Ϸ�� Ŀ��
+				conn.commit(); 
 			}
 			
 		} catch (Exception e) {
 			try {
-				conn.rollback(); // ������ �ѹ�
+				conn.rollback();
 			} catch (SQLException sqle) {
 				sqle.printStackTrace();
 			}

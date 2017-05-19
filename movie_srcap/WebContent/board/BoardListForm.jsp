@@ -20,7 +20,7 @@
 								<select name="opt" class="input-select" style="width: 100px">
 									<option value="0">제목</option>
 									<option value="1">내용</option>
-									<option value="2">작성자</option>
+									<option value="3">작성자</option>
 								</select>
 								<input type="text" size="20" name="condition" value="" placeholder="Search" />
 								<input type="submit" class="btn01" value="Search" />
@@ -83,7 +83,8 @@
 			</div>
 			
 			<div id="pageForm"  class="page_area">
-				<c:if test="${startPage != 1}">
+				<c:if test="${startPage != 0}">
+				<%-- <c:if test="${startPage != 1}"> --%>
 				<a href='BoardListAction.bo?page=${startPage-1}'  class="page_prev" >이전</a>
 				</c:if>
 
