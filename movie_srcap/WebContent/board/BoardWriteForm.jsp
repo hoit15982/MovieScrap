@@ -44,9 +44,10 @@
 						</ul>
 					</div>
 					<!-- //기타설정 -->
+				<tr>
 					<!-- board_write -->
 					<div class="board_write">
-						<textarea name="board_content" id="board_content" width="100%" height="300px">내용</textarea>
+						<textarea name="board_content" id="board_content" width="100%" height="300px">${board.board_content}</textarea>
 					</div>
 					<!-- //board_write -->
 					<!-- board_file -->

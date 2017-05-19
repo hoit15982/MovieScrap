@@ -5,61 +5,29 @@
 <jsp:useBean id="dao" class="net.member.db.MemberDAO"></jsp:useBean>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-	function frmUpdateSubmit(frm){
-		var f = frm;
+<%
+int dupChkFlag = 0;
+%>
+	
+	function frmJoinSubmit(joinForm){
+		var f = joinForm;
 		
-		if( f.mb_id.value == '' ){
+		if( f.mb_name.value == '' ){
 			alert("이름을 입력하세요");
 			return false;
 		}
 		
-		if( f.mb_pass.value == '' ){
+		if( f.mb_pw.value == '' ){
 			alert("비밀번호를 입력하세요");
 			return false;
 		}
 		
-		if( f.mb_pass_re.value == '' ){
+		if( f.mb_pw_re.value == '' ){
 			alert("비밀번호를 재입력하세요.");
 			return false;
 		}
 		
-		if( f.mb_pass.value != f.mb_pass_re.value ){
-			alert("비밀번호가 동일하지 않습니다.");
-			return false;
-		}
-	
-		if( f.mb_email.value == '' ){
-			alert("이메일을 입력해주세요.");
-			return false;
-		}
-		
-		var regExg=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-		if( ! regExg.test(f.mb_email.value) ){
-			alert("올바른 이메일 형식이 아닙니다.");
-			return false;
-		}
-		return true;
-	}
-	
-	function frmJoinSubmit(frm){
-		var f = frm;
-		
-		if( f.mb_id.value == '' ){
-			alert("이름을 입력하세요");
-			return false;
-		}
-		
-		if( f.mb_pass.value == '' ){
-			alert("비밀번호를 입력하세요");
-			return false;
-		}
-		
-		if( f.mb_pass_re.value == '' ){
-			alert("비밀번호를 재입력하세요.");
-			return false;
-		}
-		
-		if( f.mb_pass.value != f.mb_pass_re.value ){
+		if( f.mb_pw.value != f.mb_pw_re.value ){
 			alert("비밀번호가 동일하지 않습니다.");
 			return false;
 		}
@@ -75,7 +43,7 @@
 			return false;
 		}
 		
-		if( f.mb_id_chk.value == 0 ){
+		if( f.mb_id_chk.value == '0' ){
 			alert("아이디 중복확인을 해주세요.");
 			return false;
 		}
@@ -84,7 +52,7 @@
 	}
 	
 	function idDupChk(dupChk){
-		var f = document.joinForm;
+		var f = joinForm;
 		//아이디값 중복체크 
 		var id_chk = f.mb_id.value;
 		console.log("호출완료");
@@ -95,10 +63,10 @@
 			}).done(function(data){
 				if(data.trim() == "false"){
 					alert("["+f.mb_id.value +"] 이미 사용하고 있는 아이디입니다.");
-					id_chk.value = 0;
+					f.mb_id_chk.value = '0';
 				}else{
 					alert("사용할수 있는 아이디입니다.");
-					id_chk.value = 1;
+					f.mb_id_chk.value = '1';
 				}
 			});	
 		}else{
@@ -112,7 +80,7 @@
 	<div class="content_area about_area clearfix">
 		<div class="section">
 			<h2 class="title01">회원가입</h2>
-			<form action="${PATH}/MemberJoinAction.me" method="post" onSubmit="return frmJoinSubmit(this);" name="joinForm">
+			<form action="${PATH}/MemberJoinAction.me" method="post" onSubmit="return frmJoinSubmit(this);" name="joinForm" id="frm">
 				<input type="hidden" value="0" name="mb_id_chk" />
 				<table class="tbl_join">
 					<colgroup>

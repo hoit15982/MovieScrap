@@ -11,10 +11,10 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="HandheldFriendly" content="true" />
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes" />	
-	<link href="${IMG_PATH }/logo_panda_small.ico" rel="shortcut icon">
+	<link href="" rel="shortcut icon">
 	<!--[if IE 7]><html lang="ko" class="ie7"><![endif]-->
 	<!--[if IE 8]><html lang="ko" class="ie8"><![endif]-->
-	<title>${configVo.cf_title}${title }</title>
+	<title>무비스크랩</title>
 	<link rel="stylesheet" type="text/css" href="${CSS_PATH }/style.css?v=<%=System.currentTimeMillis() %>" />
 	<script type="text/javascript" src="${JS_PATH }/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="${JS_PATH }/jquery-ui.js"></script>

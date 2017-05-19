@@ -10,7 +10,7 @@
 	//회원정보 불러오기
 	
 <%member = (MemberBean) request.getAttribute("member");
- session.getAttribute("id");
+ session.getAttribute("mb_id");
 			%>
 	
 </script>
@@ -57,7 +57,7 @@ function frmUpdateSubmit(frm){
 			<h2 class="title01">회원정보 수정</h2>
 			<form action="${PATH}/MemberInfoUpdate.me" method="post"
 				onSubmit="return frmUpdateSubmit(this);" name="joinForm">
-				<input type="hidden" value="0" name="mb_id_chk" />
+				<input type="hidden" value="0" name="id_chk" />
 				<table class="tbl_join">
 					<colgroup>
 						<col class="col1" />
@@ -80,7 +80,7 @@ function frmUpdateSubmit(frm){
 					</tr>	
 					<tr>
 						<th>아이디</th>
-						<td><input type="hidden" name="mb_id" size="80" value="" />
+						<td><input type="hidden" name="id" size="80" value="" />
 							<label><%=member.getMB_ID()%></label></td>
 					</tr>
 					

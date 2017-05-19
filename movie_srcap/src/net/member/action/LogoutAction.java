@@ -13,7 +13,7 @@ public class LogoutAction implements Action{
 		HttpSession session = request.getSession();
 		String msg;
 		
-		if(session.getAttribute("id")!=null){
+		if(session.getAttribute("mb_id")!=null){
 			
 			session.invalidate();
 			msg = "안전하게 로그아웃 되었어요 다음에 또봐요 :)";

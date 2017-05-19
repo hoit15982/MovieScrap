@@ -1,4 +1,4 @@
-package net.member.db;
+package net.admin.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,13 +14,13 @@ import javax.sql.DataSource;
 
 import com.oracle.jrockit.jfr.RequestableEvent;
 
-public class MemberDAO {
+public class AdminDAO {
 	Connection con;
 	PreparedStatement pstmt;
 	ResultSet rs;
 	DataSource ds;
 	
-	public MemberDAO() {
+	public AdminDAO() {
 		try{
 			Context init = new InitialContext();
 			ds = (DataSource)init.lookup("java:comp/env/jdbc/OracleDB");
@@ -29,7 +29,7 @@ public class MemberDAO {
 			return;
 		}
 	}
-	public boolean MemberInfoUpdate(MemberBean member){
+	public boolean MemberInfoUpdate(AdminBean member){
 		String sql = "UPDATE MEMBER SET MB_PW = ?, MB_PH = ?, MB_EMAIL = ?  WHERE MB_ID=?";
 		int result = 0;
 		try {
@@ -54,7 +54,7 @@ public class MemberDAO {
 		return false;
 	}
 	
-	public boolean MemberPwUpdate(MemberBean member){
+	public boolean MemberPwUpdate(AdminBean member){
 		String sql = "UPDATE MEMBER SET MB_PW = ?  WHERE MB_ID=?";
 		int result = 0;
 		boolean loginOk = false;
@@ -105,7 +105,7 @@ public class MemberDAO {
 		return result;
 		
 	}
-	public boolean LoginChk(MemberBean member ){
+	public boolean LoginChk(AdminBean member ){
 		String sql = "select MB_ID, MB_PW,MB_NAME from MEMBER where MB_ID=?";
 		boolean result = false;
 		
@@ -136,7 +136,7 @@ public class MemberDAO {
 		return result;
 		
 	}
-	public int isMember(MemberBean member){
+	public int isMember(AdminBean member){
 		String sql = "select MB_PW from MEMBER where MB_ID=?";
 		int result = -1;
 
@@ -164,7 +164,7 @@ public class MemberDAO {
 		
 		return result;
 	}
-	public String findMyId(MemberBean member){
+	public String findMyId(AdminBean member){
 		String sql = "select MB_NAME, MB_PH, MB_ID from MEMBER where MB_NAME = ? and MB_PH = ? ";
 		String result = "";
 		System.out.println("DAO 진입");
@@ -203,7 +203,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public boolean findMyPw(MemberBean member){
+	public boolean findMyPw(AdminBean member){
 		String sql = "select MB_ID, MB_PH from MEMBER where MB_ID = ? and MB_PH = ? ";
 		boolean result = false;
 		System.out.println("DAO 진입");
@@ -244,7 +244,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public MemberBean memberUpdate(MemberBean member){
+	public AdminBean memberUpdate(AdminBean member){
 		String sql = "select MB_ID, MB_PW, MB_NAME, MB_BIRTH, MB_GENDER, "
 				+ "MB_PH, MB_EMAIL FROM MEMBER WHERE MB_ID = ? and MB_PW = ?";
 		System.out.println("DAO 진입");
@@ -292,7 +292,7 @@ public class MemberDAO {
 		return member;
 	}
 	
-	public int myPageAuth(MemberBean member){
+	public int myPageAuth(AdminBean member){
 		String sql_1 = "select MB_PW from MEMBER where MB_ID=?";
 		int result = -1;
 
@@ -321,8 +321,8 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public boolean joinMember(MemberBean member) throws SQLException{
-		String sql = "insert into MEMBER values(?,?,?,?,?,?,?,?,'no','active')";
+	public boolean joinMember(AdminBean member) throws SQLException{
+		String sql = "insert into MEMBER values(SEQ_member_num.nextval,?,?,?,?,?,?,?,?,'no')";
 		//System.out.println(member.toString());
 		int result = 0;
 		try {
@@ -340,7 +340,6 @@ public class MemberDAO {
 			pstmt.setString(6, member.getMB_PH());
 			pstmt.setString(7, member.getMB_EMAIL());
 			pstmt.setString(8, now);
-			System.out.println(member.toString());
 			result = pstmt.executeUpdate();
 			con.commit(); 
 			if(result!=0){

@@ -31,6 +31,7 @@ public class MemberJoinAction implements Action{
 		System.out.println(request.getParameter("mb_gender"));
 		System.out.println(request.getParameter("mb_ph"));
 		System.out.println(request.getParameter("mb_email"));
+		System.out.println(member.toString());
 		result = memberdao.joinMember(member);
 		if(result == false){
 			System.out.println("회원 가입 실패");

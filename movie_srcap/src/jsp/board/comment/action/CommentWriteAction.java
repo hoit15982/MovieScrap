@@ -19,12 +19,12 @@ public class CommentWriteAction implements Action
 		CommentDAO dao = CommentDAO.getInstance();
 		CommentBean comment = new CommentBean();
 		
-		// ÆÄ¸®¹ÌÅÍ °ªÀ» °¡Á®¿Â´Ù.
+		// ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
 		int comment_board = Integer.parseInt(request.getParameter("comment_board"));
 		String comment_id = request.getParameter("comment_id");
 		String comment_content = request.getParameter("comment_content");
 		
-		comment.setComment_num(dao.getSeq());	// ´ñ±Û ¹øÈ£´Â ½ÃÄö½º°ªÀ¸·Î
+		comment.setComment_num(dao.getSeq());	// ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		comment.setComment_board(comment_board);
 		comment.setComment_id(comment_id);
 		comment.setComment_content(comment_content);
@@ -32,7 +32,7 @@ public class CommentWriteAction implements Action
 		boolean result = dao.insertComment(comment);
 
 		if(result){
-			response.setContentType("text/html;charset=euc-kr");
+			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("1");
 			out.close();
