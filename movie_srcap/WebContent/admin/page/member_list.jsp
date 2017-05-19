@@ -10,12 +10,15 @@
 	<div class="content_inner">
 		<div class="search_area">
 		<form action="">
-			<select name="" id="" class="input-select">
-				<option value="">아이디</option>
-				<option value="">이름</option>
+			<select name="search" class="input-select">
+				<option value="mb_id">아이디</option>
+				<option value="mb_name">이름</option>
+				<option value="mb_ph">전화번호</option>
+				<option value="mb_email">이메일</option>
+				<option value="mb_stat">상태</option>
 			</select>
 			
-			<input type="text" name="stx" id="stx" placeholder="검색어를 입력하세요" />
+			<input type="text" name="searchKeyword" id="stx" placeholder="검색어를 입력하세요" />
 			<input type="submit" value="검색" class="btn01" />
 		</form>
 		</div>

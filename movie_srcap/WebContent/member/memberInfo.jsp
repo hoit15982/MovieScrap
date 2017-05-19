@@ -10,7 +10,7 @@
 	//회원정보 불러오기
 	
 <%member = (MemberBean) request.getAttribute("member");
- session.getAttribute("id");
+ session.getAttribute("mb_id");
 			%>
 	
 </script>

@@ -9,10 +9,7 @@ import java.util.Calendar;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.sql.DataSource;
-
-import com.oracle.jrockit.jfr.RequestableEvent;
 
 public class AdminDAO {
 	Connection con;
@@ -78,51 +75,25 @@ public class AdminDAO {
 		return loginOk;
 	}
 	
-	public boolean dupChk(String mb_id){
-		String sql = "select MB_ID from MEMBER where MB_ID=?";
+	public boolean LoginChk(AdminBean adminBean ){
+		String sql = "select MB_ID, MB_PW,MB_NAME, MB_MANAGER from MEMBER where MB_ID=?";
 		boolean result = false;
 		
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mb_id);
+			pstmt.setString(1, adminBean.getMB_ID());
 			rs = pstmt.executeQuery();
+			System.out.println(adminBean.toString());
 			if(rs.next()){
-				if(rs.getString("MB_ID").equals(mb_id)){
-					result = false; //일치
-				}
-			} else {
-				result = true; //아이디가 존재 x
-			}
-		} catch (Exception e) {
-			System.out.println("dupChk Error : "+e);
-		} finally {
-			if(rs!=null) try { rs.close();} catch(SQLException ex){}
-			if(pstmt!=null) try { pstmt.close();} catch(SQLException ex){}
-			if(con!=null) try { con.close();} catch(SQLException ex){}
-		}
-		
-		return result;
-		
-	}
-	public boolean LoginChk(AdminBean member ){
-		String sql = "select MB_ID, MB_PW,MB_NAME from MEMBER where MB_ID=?";
-		boolean result = false;
-		
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, member.getMB_ID());
-			rs = pstmt.executeQuery();
-			System.out.println(member.toString());
-			if(rs.next()){
-				if(rs.getString("MB_ID").equals(member.getMB_ID()) 
-						&& rs.getString("MB_PW").equals(member.getMB_PW())){
-					member.setMB_NAME(rs.getString("MB_NAME"));
+				if(rs.getString("MB_ID").equals(adminBean.getMB_ID()) 
+						&& rs.getString("MB_PW").equals(adminBean.getMB_PW()) 
+						&& rs.getString("MB_MANAGER").equals("yes")){
+					adminBean.setMB_NAME(rs.getString("MB_NAME"));
 					result = true; //아이디 비밀번호 일치
 				}
 			} else {
-				System.out.println(member.toString());
+				System.out.println(adminBean.toString());
 				result = false; //아이디와 비밀번호가 일치 하지 않음
 			}
 		} catch (Exception e) {

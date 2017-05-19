@@ -26,7 +26,7 @@ public class AdminController extends javax.servlet.http.HttpServlet implements j
 		if (command.equals("/admin.ad")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("./admin/page/login.jsp");
+			forward.setPath("./admin/page/adminLogin.jsp");
 			System.out.println("front open");
 			System.out.println(action);
 			System.out.println(forward);
@@ -35,7 +35,7 @@ public class AdminController extends javax.servlet.http.HttpServlet implements j
 
 		
 		// 로그인 액션계열
-		else if (command.equals("/login.ad")) {
+		else if (command.equals("/member_list.ad")) {
 			action = new AdminLoginAction();
 			forward = new ActionForward();
 
@@ -46,10 +46,10 @@ public class AdminController extends javax.servlet.http.HttpServlet implements j
 			}
 			if ((boolean) request.getAttribute("result") == false) {
 				forward.setRedirect(false);
-				forward.setPath("./member/loginForm.jsp");
+				forward.setPath("./admin/page/adminLogin.jsp");
 			} else {
 				forward.setRedirect(false);
-				forward.setPath("./main/main.jsp");
+				forward.setPath("./admin/page/member_list.jsp");
 			}
 		}
 		

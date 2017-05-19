@@ -14,6 +14,8 @@ import javax.sql.DataSource;
 
 import com.oracle.jrockit.jfr.RequestableEvent;
 
+import net.admin.db.AdminBean;
+
 public class MemberDAO {
 	Connection con;
 	PreparedStatement pstmt;
@@ -270,7 +272,6 @@ public class MemberDAO {
 					member.setMB_EMAIL(rs.getString("MB_EMAIL"));
 					
 					System.out.println("test successful");
-					//아이디 찾기 완료
 				} else {
 					System.out.println("아이디 비밀번호 일치하지 않음");
 					System.out.println(member.toString());
