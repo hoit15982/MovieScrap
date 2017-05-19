@@ -66,11 +66,7 @@ public class LoginAction implements Action {
 			msg = member.getMB_NAME() + "님! 제가 얼마나 기다렸다구요! :)";
 			System.out.println("로그인 성공");
 			session.setAttribute("mb_id", member.getMB_ID());
-<<<<<<< HEAD
 		} else {
-=======
-		}else{
->>>>>>> refs/heads/yeonsoo2
 			msg = "이런..! 고객님이 입력하신 정보와 일치하는 계정을 찾을 수 없었어요. 혹시 아이디나 비밀번호가 기억나지 않는건 아닐까요? :(";
 			System.out.println("로그인 실패");
 		}
