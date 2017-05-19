@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.movie.db.MovieAPI;
 import net.movie.db.MovieBean;
@@ -16,6 +17,9 @@ public class MovieScrapAddAction implements MAction{
 		MovieDAO moviedao =  MovieDAO.getInstance();
 		MovieBean moviedata = new MovieBean();
 		MActionForward forward = new MActionForward();
+		
+		HttpSession session = request.getSession();
+		String mb_id = (String)session.getAttribute("id");
 		
 		boolean result = false;
 		
@@ -39,9 +43,12 @@ public class MovieScrapAddAction implements MAction{
 			Movie movie = movieList.get(0);
 			request.setAttribute("movie", movie);
 			
-			moviedata.setMb_id("namhy");
+			moviedata.setMb_id(mb_id);
 			String poster = "";
-			if(movie.getPoster() != null){
+			
+			if(movie.getPoster().equals("")){
+				poster = "";
+			} else if(movie.getPoster() != null) {
 				StringTokenizer st = new StringTokenizer(movie.getPoster(),"%|");
 				poster = st.nextToken();
 			} else {
@@ -58,24 +65,35 @@ public class MovieScrapAddAction implements MAction{
 			moviedata.setMs_seq(seq);
 			moviedata.setMs_id(id);
 			
-			
-			result = moviedao.MSScrap(moviedata);
-			
-			if(result == false){
-				System.out.println("스크랩 실패 !!");
-				return null;
-			}else{
-				request.setAttribute("msg", "스크랩 성공");
-				System.out.println("스크랩 성공!!!");
+			if(moviedao.MSScrapCheck(mb_id, seq, id) == false){
+				System.out.println("중복이양!!!");
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
-				out.println("alert('스크랩성공');");
+				out.println("alert('이미 스크랩하신 영화입니다.');");
 				out.println("history.go(-1);");
 				out.println("</script>");
+				out.close();
+				return null;
+			} else {
+				result = moviedao.MSScrap(moviedata);
+				
+				if(result == false){
+					System.out.println("스크랩 실패 !!");
+					return null;
+				} else {
+					System.out.println("스크랩 성공!!!");
+					response.setContentType("text/html;charset=utf-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('스크랩성공');");
+					out.println("history.go(-1);");
+					out.println("</script>");
+					out.close();
+				}
+	
+				return null;
 			}
-
-			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
