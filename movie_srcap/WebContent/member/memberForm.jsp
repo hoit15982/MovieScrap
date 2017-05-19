@@ -8,44 +8,6 @@
 <%
 int dupChkFlag = 0;
 %>
-	function frmUpdateSubmit(joinForm){
-		var f = joinForm;
-		
-		if( f.mb_pw.value == '' ){
-			alert("이름을 입력하세요");
-			return false;
-		}if( f.mb_id.value == '' ){
-			alert("ID를 입력하세요");
-			return false;
-		}
-		
-		if( f.mb_pw.value == '' ){
-			alert("비밀번호를 입력하세요");
-			return false;
-		}
-		
-		if( f.mb_pw_re.value == '' ){
-			alert("비밀번호를 재입력하세요.");
-			return false;
-		}
-		
-		if( f.mb_pw.value != f.mb_pw_re.value ){
-			alert("비밀번호가 동일하지 않습니다.");
-			return false;
-		}
-	
-		if( f.mb_email.value == '' ){
-			alert("이메일을 입력해주세요.");
-			return false;
-		}
-		
-		var regExg=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-		if( ! regExg.test(f.mb_email.value) ){
-			alert("올바른 이메일 형식이 아닙니다.");
-			return false;
-		}
-		return true;
-	}
 	
 	function frmJoinSubmit(joinForm){
 		var f = joinForm;
