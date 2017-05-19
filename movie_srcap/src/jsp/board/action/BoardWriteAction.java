@@ -22,14 +22,18 @@ public class BoardWriteAction implements Action
 		
 		ActionForward forward = new ActionForward();
 				
+		// ���ε� ���� ������
 		int fileSize= 5*1024*1024;
+		// ���ε�� ���� ������
 		String uploadPath = request.getServletContext().getRealPath("/UploadFolder");
 
 		try {
 			
+			// ���Ͼ��ε� 
 			MultipartRequest multi = new MultipartRequest
-					(request, uploadPath, fileSize, "utf-8", new DefaultFileRenamePolicy());
+					(request, uploadPath, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
+			// �����̸� ��������
 			String fileName = "";
 			Enumeration<String> names = multi.getFileNames();
 			if(names.hasMoreElements())
@@ -41,8 +45,8 @@ public class BoardWriteAction implements Action
 			BoardDAO dao = BoardDAO.getInstance();
 			BoardBean border = new BoardBean();
 			
-			border.setBoard_num(dao.getSeq()); 
-			border.setBoard_id(multi.getParameter("board_id")); 
+			border.setBoard_num(dao.getSeq()); // �������� ������ ����
+			border.setBoard_id(multi.getParameter("board_id")); // ���簪
 			border.setBoard_subject(multi.getParameter("board_subject"));
 			border.setBoard_content(multi.getParameter("board_content"));
 			border.setBoard_file(fileName);

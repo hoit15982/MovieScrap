@@ -1,7 +1,7 @@
 create table MovieScrap(
 	ms_no number,
 	mb_id varchar2(15),
-	ms_title varchar2(50),
+	ms_title varchar2(100),
 	ms_director varchar2(30),
 	ms_poster varchar2(500),
 	ms_regdate date,
@@ -11,13 +11,29 @@ create table MovieScrap(
 	primary key (ms_no)
 );
 
-drop table MovieScrap purge;
-delete from MovieScrap;
-select * from MovieScrap;
-select * from MovieScrap where mb_id='namhy' and ms_seq='35443' and ms_id='F';
-select * from (select rownum rnum, ms_no, mb_id, ms_title, ms_director,ms_poster, ms_regdate, ms_rating, ms_seq, ms_id from (select * from Moviescrap)) where rnum>=1 and rnum<=5 and mb_id='namhy';
+alter table MovieScrap modify(ms_title varchar2(100));
 
-select * from MEMBER;
+drop table MovieScrap purge;
+
+delete from MovieScrap;
+
+select * from member_board;
+
+select * from MovieScrap;
+
+select * from MovieScrap where mb_id='namhy';
+select count(*) from MovieScrap where mb_id='hoit159';
+select * from (select rownum rnum, ms_no, mb_id, ms_title, ms_director,ms_poster, ms_regdate, ms_rating, ms_seq, ms_id from (select * from Moviescrap where mb_id='hoit159')) where rnum>=1 and rnum<=100;
+select * from (select ms_no, mb_id, ms_title, ms_director,ms_poster, ms_regdate, ms_rating, ms_seq, ms_id from (select * from Moviescrap)) where mb_id='namhy';
+
+
+select ms_title, count(*) from MovieScrap group by ms_title order by count(*) desc;
+
+
+
+
+
+select * from seq;
 
 select * from MovieReview;
 select count(*) from MovieReview where mb_id='namhy' and ms_seq=35443 and ms_id='F';

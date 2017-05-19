@@ -35,12 +35,11 @@ public class BoardListAction implements Action
 		BoardDAO dao = BoardDAO.getInstance();
 		int listCount = dao.getBoardListCount(listOpt);
 		
-
 		int maxPage = (int)(listCount/10.0 + 0.9);
 
 		if(spage > maxPage) spage = maxPage;
 		listOpt.put("start", spage*10-9);
-
+		
 		ArrayList<BoardBean> list =  dao.getBoardList(listOpt);
 	
 		int startPage = (int)(spage/5.0 + 0.8) * 5 - 4;

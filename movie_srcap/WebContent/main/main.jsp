@@ -5,7 +5,8 @@
 <!-- content -->
 <section class="content main_content">
 	<div class="main_search_area">
-		<form action="">
+		<!-- 검색시 영화정보 페이지로 이동 후 검색 -->
+		<form action="MovieScrapList.mv" method="get">
 			<label class="tit" for="stx">검색할 영화제목을 입력해주세요.</label>
 			<input type="text" name="stx" id="stx" value="" size="40" />
 			<input type="submit" value="영화검색" class="btn01" />
@@ -15,9 +16,9 @@
 	<div class="main_visual_area">
 		<div class="visual_area">
 			<ul class="bxslider">
-				<li><img src="${IMG_PATH }/main/visual_img01.jpg" /></a></li>
-				<li><img src="${IMG_PATH }/main/visual_img02.jpg" /></a></li>
-				<li><img src="${IMG_PATH }/main/visual_img03.jpg" /></a></li>
+				<li><img src="${IMG_PATH }/main/visual_img01.jpg" /></li>
+				<li><img src="${IMG_PATH }/main/visual_img02.jpg" /></li>
+				<li><img src="${IMG_PATH }/main/visual_img03.jpg" /></li>
 			</ul>
 		</div>
 	</div>

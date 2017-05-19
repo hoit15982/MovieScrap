@@ -117,6 +117,67 @@ public class MovieDAO {
 		return false;
 	}
 	
+	
+	//스크랩 체크
+	public boolean MSScrapCheck(String mb_id, String ms_seq, String ms_id){
+		String sql = "select * from MovieScrap where mb_id=? and ms_seq=? and ms_id=?";
+		try {
+			connection();
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb_id);
+			pstmt.setString(2, ms_seq);
+			pstmt.setString(3, ms_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()){
+				System.out.println("중복된 영화입니다");
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("스크랩 중복 체크 에러 : "+e);
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e2) {
+			}
+		}
+		return true;
+	}
+	
+	
+	//스크랩 삭제 체크 ( 스크랩안되있는데 삭제버튼을 누른경우)
+	public boolean MSScrapDeleteCheck(String mb_id, String ms_seq, String ms_id){
+		String sql = "select * from MovieScrap where mb_id=? and ms_seq=? and ms_id=?";
+		try {
+			connection();
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb_id);
+			pstmt.setString(2, ms_seq);
+			pstmt.setString(3, ms_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				
+			} else {
+				System.out.println("스크랩 안된 영화입니다");
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("스크랩 안된 영화 삭제 에러 : "+e);
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e2) {
+			}
+		}
+		return false;
+	}
+	
+	
 	//리뷰 작성
 	public boolean MSReview(MovieBean movie){
 		int num = 0;
@@ -198,7 +259,7 @@ public class MovieDAO {
 	}
 	
 	
-	//글쓴이 인지 확인
+	/*//글쓴이 인지 확인
 	public boolean isScrapWriter(String mb_id, String ms_seq, String ms_id){
 		System.out.println("mb_id="+mb_id);
 		System.out.println("ms_seq="+ms_seq);
@@ -232,7 +293,7 @@ public class MovieDAO {
 			}
 		}
 		return false;
-	}
+	}*/
 	
 	//스크랩 갯수 확인(로그인한 사람아이디값으로 체크)
 	public int getScrapCount(String mb_id){
@@ -263,7 +324,7 @@ public class MovieDAO {
 		String sql = "";
 		sql = "select * from (select rownum rnum, ms_no, mb_id, ms_title, ms_director, "
 				+ "ms_poster, ms_regdate, ms_rating, ms_seq, ms_id from (select * from "
-				+ "moviescrap)) where rnum>=? and rnum<=? and mb_id=?";
+				+ "moviescrap where mb_id=?)) where rnum>=? and rnum<=?";
 		
 		List list = new ArrayList();
 		int startrow = (page -1)*10+1;
@@ -273,9 +334,9 @@ public class MovieDAO {
 			connection();
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startrow);
-			pstmt.setInt(2, endrow);
-			pstmt.setString(3, mb_id);
+			pstmt.setString(1, mb_id);
+			pstmt.setInt(2, startrow);
+			pstmt.setInt(3, endrow);
 			
 			rs=pstmt.executeQuery();
 			
@@ -302,6 +363,29 @@ public class MovieDAO {
 			if(con!=null) try{con.close();} catch(SQLException e){}
 		}
 		return null;
+	}
+	
+	public int getMainRank(){
+		int x = 0;
+		
+		try {
+			connection();
+			con = ds.getConnection();
+			pstmt = con.prepareStatement("select ms_title, count(*)"
+					+ " from MovieScrap group by ms_title order by count(*) desc");
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) x = rs.getInt(1);
+			
+		} catch (Exception e) {
+			System.out.println("getMainRank Error : "+e);
+		} finally {
+			if(rs!=null) try{rs.close();} catch(SQLException e){}
+			if(pstmt!=null) try{pstmt.close();} catch(SQLException e){}
+			if(con!=null) try{con.close();} catch(SQLException e){}
+		}
+		return x;
 	}
 	
 	
@@ -340,8 +424,11 @@ public class MovieDAO {
 					movie.setActor(actorlist);
 					
 					//포스터
-					movie.setPoster(resultObject.get("posters").toString());
-					
+					if(resultObject.get("posters").toString().equals("")){
+						movie.setPoster("");
+					} else {
+						movie.setPoster(resultObject.get("posters").toString());
+					}
 					//스틸
 					movie.setStlls(resultObject.get("stlls").toString());
 					
