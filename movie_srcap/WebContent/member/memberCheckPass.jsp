@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/header.jsp"></c:import>
-<% session.getAttribute("id"); %>
+<% session.getAttribute("mb_id"); %>
 <!-- content -->
 <section class="content">
 	<div class="content_area about_area clearfix">

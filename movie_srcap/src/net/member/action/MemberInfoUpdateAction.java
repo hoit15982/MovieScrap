@@ -19,7 +19,7 @@ public class MemberInfoUpdateAction implements Action{
 		HttpSession session = request.getSession();
 		
 		boolean result = false;
-		member.setMB_ID((String) session.getAttribute("id"));
+		member.setMB_ID((String) session.getAttribute("mb_id"));
 		member.setMB_PW(request.getParameter("mb_pw"));
 		member.setMB_PH(request.getParameter("mb_ph"));
 		member.setMB_EMAIL(request.getParameter("mb_email"));

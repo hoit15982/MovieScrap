@@ -183,26 +183,7 @@ public class BoardDAO
                 
                 sql.delete(0, sql.toString().length());
             }
-            else if(opt.equals("2")) // 제목+내용으로 검색
-            {
-                sql.append("select * from ");
-                sql.append("(select rownum rnum, BOARD_NUM, BOARD_ID, BOARD_SUBJECT");
-                sql.append(", BOARD_CONTENT, BOARD_FILE, BOARD_DATE, BOARD_COUNT");
-                sql.append(", BOARD_RE_REF, BOARD_RE_LEV, BOARD_RE_SEQ ");
-                sql.append("FROM ");
-                sql.append("(select * from MEMBER_BOARD where BOARD_SUBJECT like ? OR BOARD_CONTENT like ? ");
-                sql.append("order BY BOARD_RE_REF desc, BOARD_RE_SEQ asc)) ");
-                sql.append("where rnum>=? and rnum<=?");
-                
-                pstmt = conn.prepareStatement(sql.toString());
-                pstmt.setString(1, "%"+condition+"%");
-                pstmt.setString(2, "%"+condition+"%");
-                pstmt.setInt(3, start);
-                pstmt.setInt(4, start+9);
-                
-                sql.delete(0, sql.toString().length());
-            }
-            else if(opt.equals("3")) // 글쓴이로 검색
+            else if(opt.equals("2")) // 글쓴이로 검색
             {
                 sql.append("select * from ");
                 sql.append("(select rownum rnum, BOARD_NUM, BOARD_ID, BOARD_SUBJECT");

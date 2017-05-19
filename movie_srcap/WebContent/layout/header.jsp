@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<% session.getAttribute("id"); %>
+<% session.getAttribute("mb_id"); %>
 <script type="text/javascript">
 <%
 if(request.getAttribute("msg")!=null){
@@ -41,8 +41,8 @@ if(request.getAttribute("msg")!=null){
 		<!-- 글로벌메뉴 -->
 		<div class="top_global_menu">
 			<ul class="clear clearfix">
-				<%if(session.getAttribute("id") != null) { %>
-				<li class="welcome_text"><%out.print(session.getAttribute("id"));%> 님 환영합니다.</li>
+				<%if(session.getAttribute("mb_id") != null) { %>
+				<li class="welcome_text"><%out.print(session.getAttribute("mb_id"));%> 님 환영합니다.</li>
 				<li class="first"><a href="${PATH }/logout.me" id="logout">LOGOUT</a></li>
 				<li><a href="${PATH }/memberCheckPass.me">MYPAGE</a></li>		
 				<%} else{%>
