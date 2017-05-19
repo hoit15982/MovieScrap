@@ -87,7 +87,7 @@
 		
 		// 댓글 답변창
 		function cmReplyOpen(comment_num){
-			var userId = '${sessionScope.sessionID}';
+			var userId = '${sessionScope.mb_id}';
 			
 			if(userId == "" || userId == null){
 				alert("로그인후 사용가능합니다.");
@@ -165,13 +165,12 @@
 					<!-- board_write bottom -->
 					<div class="clearfix board_view_bottom">
 						<div class="button_area_left">
-							<%-- <c:if test="${sessionScope.sessionID !=null}">	 --%>							
-							<c:if test="${mb_id !=null}">								
-								<%-- <c:if test="${id == board.board_id}"> --%>
+							<c:if test="${sessionScope.mb_id!=null}">								
+								<c:if test="${sessionScope.mb_id == board.board_id}">
 									<input type="button" value="수정" onclick="doAction(0)" class="btn01">
 									<input type="button" value="삭제" onclick="doAction(1)" class="btn01">
 									<!-- <input type="button" value="답글" onclick="changeView(1)" class="btn01"> -->
-								<%-- </c:if> --%>
+								</c:if>
 							</c:if>
 						</div>						
 						<div class="button_area_right">
@@ -212,7 +211,7 @@
 								<div id="btn">
 									<a href="#" onclick="cmReplyOpen(${comment.comment_num})">[답변]</a><br>
 									<!-- 댓글 작성자만 수정, 삭제 가능하도록 -->
-									<c:if test="${comment.comment_id == sessionScope.sessionID}">
+									<c:if test="${comment.comment_id == sessionScope.mb_id}">
 										<a href="#" onclick="cmUpdateOpen(${comment.comment_num})">[수정]</a>
 										<br>
 										<a href="#" onclick="cmDeleteOpen(${comment.comment_num})">[삭제]</a>
@@ -226,15 +225,15 @@
 
 				<!-- 로그인 했을 경우만 댓글 작성가능 -->
 				<%-- <c:if test="${sessionScope.sessionID !=null}"> --%>
-				<c:if test="${mb_id !=null}">
+				<c:if test="${sessionScope.mb_id !=null}">
 					<tr bgcolor="#F5F5F5">
 						<form id="writeCommentForm">
 							<input type="hidden" name="comment_board"
 								value="${board.board_num}"> <input type="hidden"
-								name="comment_id" value="${sessionScope.sessionID}">
+								name="comment_id" value="${sessionScope.mb_id}">
 							<!-- 아이디-->
 							<td width="150">
-								<div>${sessionScope.sessionID}</div>
+								<div>${sessionScope.mb_id}</div>
 							</td>
 							<!-- 본문 작성-->
 							<td width="550">
