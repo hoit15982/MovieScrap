@@ -19,7 +19,7 @@ public class MovieScrapAddAction implements MAction{
 		MActionForward forward = new MActionForward();
 		
 		HttpSession session = request.getSession();
-		String mb_id = (String)session.getAttribute("id");
+		String mb_id = (String)session.getAttribute("mb_id");
 		
 		boolean result = false;
 		
@@ -90,8 +90,21 @@ public class MovieScrapAddAction implements MAction{
 					out.println("history.go(-1);");
 					out.println("</script>");
 					out.close();
+					
+					if(moviedao.MovieRankCheck(seq, id)){
+						result = moviedao.MovieRankAdd(moviedata);
+						if(result == false){
+							System.out.println("랭킹 추가 실패");
+							return null;
+						} else {
+							System.out.println("랭킹 추가 성공");
+						}
+						
+					} else {
+						moviedao.setMovieRankCntUp(seq, id);
+					}
+					
 				}
-	
 				return null;
 			}
 		} catch (Exception e) {

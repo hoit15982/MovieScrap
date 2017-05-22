@@ -14,6 +14,8 @@ public class MovieBean {
 	private String ms_review;		//작성된 리뷰 
 	private Date ms_regdate;		//스크랩 날짜
 	
+	private int ms_cnt; 
+	
 	private String ms_rating;		//등급
 	private String ms_seq;
 	private String ms_id;
@@ -22,6 +24,15 @@ public class MovieBean {
 	
 	
 	
+	
+	
+	
+	public int getMs_cnt() {
+		return ms_cnt;
+	}
+	public void setMs_cnt(int ms_cnt) {
+		this.ms_cnt = ms_cnt;
+	}
 	public String getMs_poster() {
 		return ms_poster;
 	}

@@ -17,7 +17,7 @@ public class MovieScrapMyListAction implements MAction {
 		MActionForward forward = new MActionForward();
 		
 		HttpSession session = request.getSession();
-		String mb_id = (String)session.getAttribute("id");
+		String mb_id = (String)session.getAttribute("mb_id");
 		
 		
 		if(mb_id==null){

@@ -1,5 +1,8 @@
 package net.movie.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,11 +16,17 @@ public class MovieMainRankAction implements MAction {
 		MActionForward forward = new MActionForward();
 		
 		MovieDAO moviedao = MovieDAO.getInstance();
-		MovieBean moviedata = new MovieBean();
+		List ranklist = new ArrayList();
 		
-		int rankcount = moviedao.getMainRank();
+
 		
-		return null;
+		
+		request.setAttribute("ranklist", ranklist);
+		
+		forward.setRedirect(false);
+		forward.setPath("./movie/MovieRank.jsp");
+		
+		return forward;
 	}
 
 }
