@@ -2,6 +2,7 @@ package net.movie.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.movie.db.MovieBean;
 import net.movie.db.MovieDAO;
@@ -13,6 +14,10 @@ public class MovieScrapReviewAction implements MAction{
 		// TODO Auto-generated method stub
 		MActionForward forward = new MActionForward();
 		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		String mb_id = (String)session.getAttribute("mb_id");
+		
 		boolean result = false;
 		
 		String seq = request.getParameter("seq") == null ? "" : request.getParameter("seq");
@@ -20,12 +25,17 @@ public class MovieScrapReviewAction implements MAction{
 		int rating = request.getParameter("ms_myRating") == null ? 0 : Integer.parseInt(request.getParameter("ms_myRating"));
 		String review = request.getParameter("ms_review") == null ? "" : request.getParameter("ms_review");
 		
+		String title = request.getParameter("ms_title") == null? "" : request.getParameter("ms_title");
+		
+		System.out.println("MovieScrapReviewAction - ms_title : "+title);
+		
 		
 		MovieDAO moviedao = MovieDAO.getInstance();
 		MovieBean moviedata = new MovieBean();
 		
 		try {
-			moviedata.setMb_id("namhy");
+			moviedata.setMb_id(mb_id);
+			moviedata.setMs_title(title);
 			moviedata.setMs_myRating(rating);
 			moviedata.setMs_review(review);
 			moviedata.setMs_seq(seq);

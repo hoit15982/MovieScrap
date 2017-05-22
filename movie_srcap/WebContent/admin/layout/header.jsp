@@ -23,6 +23,21 @@
 	<script type="text/javascript" src="${JS_PATH }/html5.js"></script>
 	<![endif]-->
 	<script type="text/javascript" src="${JS_PATH }/ux.js?v=<%=System.currentTimeMillis() %>"></script>
+	<% session.getAttribute("mb_id"); %>
+<script type="text/javascript">
+<%
+if(request.getAttribute("msg")!=null){
+	String msg = "";
+	msg = (String)request.getAttribute("msg");
+	System.out.println(msg);
+%>
+	alert("<%=msg%>");
+<%
+	request.setAttribute("msg", null);
+	System.out.println((String)request.getAttribute("msg"));
+}
+%>
+</script>
 </head>
 <body>
 <div class="wrap">

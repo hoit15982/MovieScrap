@@ -87,7 +87,7 @@ public class MovieAPI {
 			con.disconnect();
 		} catch (Exception e) {
 			System.out.println(e);
-		}
+		} 
 		
 		return sb.toString();
 	}

@@ -54,8 +54,8 @@ input[size='500']{width:100%}
 /* login area */
 .login_area{position:absolute;z-index:30;top:30%;left:50%;width:300px;margin-left:-150px;font-size:1.2em}
 .login_area .login_title{padding:1em 0;text-align:center;font-size:1.6em;}
-.login_area input[type="text"], .login_area input[type="password"]{width:100%;margin:0 -1px;text-indent:45px;}
-.login_area input[type="text"]:focus, .login_area input[type="password"]:focus{border-color:#fff;color:#fff;background:#efefef;}
+.login_area input[type="text"], .login_area input[type="password"]{width:100%;margin:0 -1px;text-indent:45px;color:#000;}
+.login_area input[type="text"]:focus, .login_area input[type="password"]:focus{border-color:#000;color:#000;background:#efefef;}
 .login_area .login_list li{position:relative;margin:4px 0;background-repeat:no-repeat;background-position:15px 50%;}
 .login_area .login_list li span{position:absolute;left:11px;top:11px;}
 
@@ -66,7 +66,6 @@ input[size='500']{width:100%}
 .search_area{padding:30px 0px 10px;text-align:center}
 
 /* board area */
-.board_cate_area{padding-top:20px}
 .board_cate_area ul li{display:inline-block;*display:inline;zoom:1;}
 .board_cate_area ul li a{display:block;padding:0 1em;line-height:3em;height:3em;border:1px solid #9c918a;border-radius:3px;text-align:center;color:#e0d9d3}
 .board_cate_area ul li.on a{background:url(../images/bg_brown30.png)}
